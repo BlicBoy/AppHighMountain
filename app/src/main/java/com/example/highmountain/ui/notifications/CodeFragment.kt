@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentCodeBinding
-import com.google.firebase.auth.FirebaseAuth
 
 
 
@@ -32,9 +32,20 @@ class CodeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val sharedPreferences = activity?.getSharedPreferences("code", Context.MODE_PRIVATE)
+        var editor = sharedPreferences?.edit()
 
-        val sharedPreferences = activity?.getSharedPreferences("CodeSec", Context.MODE_PRIVATE)
-        
+        binding.buttonGuardarCode.setOnClickListener {
+            editor?.putString("code", binding.editTextCode.text.toString())
+            editor?.commit()
+            Toast.makeText(requireContext(), "Codigo Registrado com Sucesso!", Toast.LENGTH_LONG).show()
+        }
+
+        binding.button.setOnClickListener {
+            var code = sharedPreferences?.getString("code","0000")
+            Toast.makeText(requireContext(), code, Toast.LENGTH_LONG).show()
+        }
+
 
     }
 
