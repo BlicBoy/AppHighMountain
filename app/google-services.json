@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:835740902039:android:8be4336074017149897fd2",
+        "mobilesdk_app_id": "1:835740902039:android:1ae9567b1bb1dd38897fd2",
         "android_client_info": {
-          "package_name": "com.example.app_alpinismo"
+          "package_name": "com.example.highmountain"
         }
       },
       "oauth_client": [
