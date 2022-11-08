@@ -21,6 +21,8 @@ class RegisterActivity : AppCompatActivity() {
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
+
 
         auth = Firebase.auth
 
@@ -29,7 +31,6 @@ class RegisterActivity : AppCompatActivity() {
             val email = binding.etEmailReg.text.toString()
             val password = binding.etPassReg.text.toString()
             val passwordRepetir = binding.etRepPassReg.text.toString()
-
 
             if (nome.isNullOrBlank()||email.isNullOrBlank() || password.isNullOrBlank() || passwordRepetir.isNullOrBlank()){
                 Toast.makeText(this, "Não foram preenchidos todos os campos", Toast.LENGTH_LONG).show()
@@ -50,6 +51,11 @@ class RegisterActivity : AppCompatActivity() {
                         }
                 }
             }
+        }
+
+
+        binding.btLoginRegister.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 
