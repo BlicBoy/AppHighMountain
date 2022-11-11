@@ -7,55 +7,20 @@
     tools:context=".ui.notifications.ProfileFragment">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextAdminLastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="Nome"
+        android:hint="LastName"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-    <Button
-        android:id="@+id/btAlterarInformações"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="44dp"
-        android:text="Alterar Informações"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
-
-    <Button
-        android:id="@+id/btTerminarSessao"
-        android:layout_width="155dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="28dp"
-        android:text="Terminar Sessão"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAlterarInformações" />
-
-    <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAdminFirstName" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageViewProfileAdmin"
         android:layout_width="334dp"
         android:layout_height="146dp"
         android:layout_marginTop="16dp"
@@ -66,14 +31,53 @@
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:src="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/btDefinirCodigo"
-        android:layout_width="143dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="20dp"
-        android:text="Codigo de Segurança"
+    <EditText
+        android:id="@+id/editTextAdminFirstName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="FirstName"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btTerminarSessao" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileAdmin" />
+
+    <EditText
+        android:id="@+id/editTextAdminPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAdminLastName" />
+
+    <Button
+        android:id="@+id/buttonSaveAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAdminDate" />
+
+    <EditText
+        android:id="@+id/editTextAdminDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Data Nascimento"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAdminPhone" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
