@@ -34,7 +34,6 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,11 +52,10 @@ class ProfileFragment : Fragment() {
             dispatchTakePictureIntent()
         }
 
-        auth = Firebase.auth
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val db = Firebase.firestore
         db.collection("administradores").document(uid)
-            .addSnapshotListener{ value, error ->
+            .addSnapshotListener { value, error ->
                 val administrador = value?.let {
                     Administrador.fromDoc(it)
                 }
@@ -65,7 +63,7 @@ class ProfileFragment : Fragment() {
                 binding.editTextAdminFirstName.setText(administrador?.FirstName)
                 binding.editTextAdminLastName.setText(administrador?.LastName)
                 binding.editTextAdminPhone.setText(administrador?.numeroTelemovel)
-                administrador?.urlPhoto.let {
+                administrador?.photoFilename.let {
                     val storage = Firebase.storage
                     var storageRef = storage.reference
                     var islandRef = storageRef.child("adminPhotos/${it}")
@@ -78,13 +76,34 @@ class ProfileFragment : Fragment() {
                         binding.imageViewProfileAdmin.setImageBitmap(bitmap)
                     }.addOnFailureListener {
                         // Handle any errors
-                        Log.d("Error", it.toString() )
+                        Log.d("Error", it.toString())
                     }
                 }
 
             }
 
+        val focusChange = object : View.OnFocusChangeListener {
+            override fun onFocusChange(view: View?, hasFocus: Boolean) {
+                if (!hasFocus) {
+                    when (view) {
+                        binding.editTextAdminFirstName -> {
+                            Administrador.postField(
+                                binding.editTextAdminFirstName.text.toString(),
+                                "FirstName"
+                            )
+                        }
+                    }
+                }
+            }
+
+        }
+        binding.editTextAdminFirstName.onFocusChangeListener = focusChange
     }
+
+
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -99,7 +118,7 @@ class ProfileFragment : Fragment() {
                 binding.imageViewProfileAdmin.setImageBitmap(this)
                 uploadFile {
                     if (it != null) {
-                        Administrador.postField(it, "urlPhoto")
+                        Administrador.postField(it, "photoFilename")
                     }
                 }
             }
