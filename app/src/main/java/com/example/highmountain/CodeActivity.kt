@@ -27,15 +27,11 @@ class CodeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonEntrar.setOnClickListener {
-          if (PREF_CODE == binding.editTextNumberPasswordInicio.text.toString()){
-              //startActivity(Intent(this@CodeActivity,MainActivity::class.java))
-             Toast.makeText(baseContext, PREF_CODE,Toast.LENGTH_LONG).show()
+          if (this@CodeActivity.PREF_CODE == binding.editTextNumberPasswordInicio.text.toString()){
+              startActivity(Intent(this@CodeActivity,MainActivity::class.java))
           }else{
-              Toast.makeText(baseContext, PREF_CODE,Toast.LENGTH_LONG).show()
+              Toast.makeText(baseContext, "Erro",Toast.LENGTH_LONG).show()
           }
-
-
-
         }
     }
 }

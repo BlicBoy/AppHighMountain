@@ -3,7 +3,7 @@ package com.example.highmountain.ui
 import android.content.Context
 
 object Preferences {
-    var PREF_CODE = "pref-code"
+    const val PREF_CODE = "pref_code"
 }
 
 var Context.PREF_CODE : String?
@@ -14,7 +14,9 @@ var Context.PREF_CODE : String?
     set(value){
         val sharedPref = getSharedPreferences(Preferences.PREF_CODE, Context.MODE_PRIVATE) ?: return
         with (sharedPref.edit()) {
-            if (value != null) {
+            if(value == "apagar"){
+                clear()
+            }else if (value != null) {
                 putString(Preferences.PREF_CODE, value.toString())
             }
             commit()

@@ -3,6 +3,7 @@ package com.example.highmountain
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.highmountain.databinding.ActivitySplashBinding
 import com.example.highmountain.ui.PREF_CODE
@@ -35,8 +36,11 @@ class SplashActivity : AppCompatActivity() {
                 val auth = Firebase.auth
              val currentUser = auth.currentUser
            if (currentUser != null){
-
+               if (this@SplashActivity.PREF_CODE.isNullOrBlank()){
                    startActivity(Intent(this@SplashActivity,MainActivity::class.java))
+               }else{
+                   startActivity(Intent(this@SplashActivity,CodeActivity::class.java))
+               }
            }
            else{
               startActivity(Intent(this@SplashActivity,LoginActivity::class.java))
