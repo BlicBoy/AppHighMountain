@@ -3,16 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.highmountain">
 
-    //camera
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
-
 
     <application
         android:allowBackup="true"
@@ -33,10 +34,14 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
+
         <activity
             android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CodeActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"

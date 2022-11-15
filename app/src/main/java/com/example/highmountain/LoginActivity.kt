@@ -56,8 +56,6 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
-
-
     }
 
     companion object{

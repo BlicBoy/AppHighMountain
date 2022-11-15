@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.example.highmountain.databinding.ActivitySplashBinding
+import com.example.highmountain.ui.PREF_CODE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -34,15 +35,13 @@ class SplashActivity : AppCompatActivity() {
                 val auth = Firebase.auth
              val currentUser = auth.currentUser
            if (currentUser != null){
-              startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+
+                   startActivity(Intent(this@SplashActivity,MainActivity::class.java))
            }
            else{
               startActivity(Intent(this@SplashActivity,LoginActivity::class.java))
            }
                 finish()
-
-
-
             }
         }
     }

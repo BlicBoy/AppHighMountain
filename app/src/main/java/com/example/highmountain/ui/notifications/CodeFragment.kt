@@ -36,12 +36,12 @@ class CodeFragment : Fragment() {
             PREF_CODE = binding.editTextCode.text.toString()
             Toast.makeText(requireContext(), "Codigo Registrado com Sucesso!", Toast.LENGTH_LONG).show()
         }
+        binding.btLimparCodigo.setOnClickListener {
+          //  PREF_CODE = null.toString()
+          //  Toast.makeText(requireContext(), "Codigo Limpo com Sucesso!", Toast.LENGTH_LONG).show()
 
-        binding.button.setOnClickListener {
-            Toast.makeText(requireContext(), PREF_CODE, Toast.LENGTH_LONG).show()
+             Toast.makeText(requireContext(), PREF_CODE, Toast.LENGTH_LONG).show()
         }
-
-
     }
 
 
