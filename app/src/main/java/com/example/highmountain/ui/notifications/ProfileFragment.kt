@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.highmountain.LoginActivity
 import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentProfileBinding
+import com.example.highmountain.ui.LoadingDialog
 import com.example.highmountain.ui.models.Administrador
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -47,6 +49,12 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //loading
+        val loading = LoadingDialog(requireActivity())
+        loading.startLoading()
+        Handler().postDelayed({ loading.isDismiss() }, 5000) //possivel alterar tempo
+
 
         binding.imageViewProfileAdmin.setOnClickListener {
             dispatchTakePictureIntent()
