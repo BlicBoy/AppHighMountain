@@ -32,7 +32,7 @@ data class Administrador
             val db = Firebase.firestore
             db.collection("administradores")
                 .add(toHasMap())
-                .addOnSuccessListener {
+                .addOnSuccessListener { documentReference ->
                     callback(null)
                 }
                 .addOnFailureListener { e->

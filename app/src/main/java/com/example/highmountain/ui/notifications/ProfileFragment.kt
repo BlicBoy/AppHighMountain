@@ -52,33 +52,39 @@ class ProfileFragment : Fragment() {
             dispatchTakePictureIntent()
         }
 
+        binding.buttonCodeAdmin.setOnClickListener {
+           findNavController().navigate(R.id.action_navigation_profile_to_codeFragment)
+        }
+
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val db = Firebase.firestore
         db.collection("administradores").document(uid)
             .addSnapshotListener { value, error ->
-                val administrador = value?.let {
+
+                val admin = value?.let {
                     Administrador.fromDoc(it)
                 }
+                binding.editTextAdminFirstName.setText(admin?.FirstName)
+                binding.editTextAdminLastName.setText(admin?.LastName)
+                binding.editTextAdminPhone.setText(admin?.numeroTelemovel)
+                binding.editTextAdminDate.setText(admin?.dataNascimento)
+                  admin?.photoFilename.let {
 
-                binding.editTextAdminFirstName.setText(administrador?.FirstName)
-                binding.editTextAdminLastName.setText(administrador?.LastName)
-                binding.editTextAdminPhone.setText(administrador?.numeroTelemovel)
-                administrador?.photoFilename.let {
-                    val storage = Firebase.storage
-                    var storageRef = storage.reference
-                    var islandRef = storageRef.child("adminPhotos/${it}")
+                      val storage = Firebase.storage
+                      var storageRef = storage.reference
+                      var islandRef = storageRef.child("adminPhotos/${it}")
 
-                    val ONE_MEGABYTE: Long = 10024 * 1024
-                    islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+                      val ONE_MEGABYTE: Long = 10024 * 1024
+                      islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
 
-                        val inputStream = it.inputStream()
-                        val bitmap = BitmapFactory.decodeStream(inputStream)
-                        binding.imageViewProfileAdmin.setImageBitmap(bitmap)
-                    }.addOnFailureListener {
-                        // Handle any errors
-                        Log.d("Error", it.toString())
-                    }
-                }
+                          val inputStream = it.inputStream()
+                          val bitmap = BitmapFactory.decodeStream(inputStream)
+                          binding.imageViewProfileAdmin.setImageBitmap(bitmap)
+                      }.addOnFailureListener {
+                          // Handle any errors
+                          Log.d("Error", it.toString())
+                      }
+                  }
 
             }
 
@@ -87,17 +93,29 @@ class ProfileFragment : Fragment() {
                 if (!hasFocus) {
                     when (view) {
                         binding.editTextAdminFirstName -> {
-                            Administrador.postField(
-                                binding.editTextAdminFirstName.text.toString(),
-                                "FirstName"
-                            )
+                            Administrador.postField(binding.editTextAdminFirstName.text.toString(), "FirstName")
                         }
+                        binding.editTextAdminLastName->{
+                            Administrador.postField(binding.editTextAdminLastName.text.toString(), "LastName")
+                        }
+                        binding.editTextAdminPhone->{
+                            Administrador.postField(binding.editTextAdminPhone.text.toString(), "numeroTelemovel")
+                        }
+                        binding.editTextAdminDate->{
+                            Administrador.postField(binding.editTextAdminDate.text.toString(), "dataNascimento")
+                        }
+
+
+
                     }
                 }
             }
 
         }
         binding.editTextAdminFirstName.onFocusChangeListener = focusChange
+        binding.editTextAdminLastName.onFocusChangeListener = focusChange
+        binding.editTextAdminPhone.onFocusChangeListener = focusChange
+        binding.editTextAdminDate.onFocusChangeListener = focusChange
     }
 
 

@@ -57,11 +57,11 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextAdminLastName" />
 
     <Button
-        android:id="@+id/buttonSaveAdmin"
+        android:id="@+id/buttonCodeAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Save"
+        android:text="Codigo de Segurança"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"

@@ -58,13 +58,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        binding.btResgister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
-        }
-
     }
-
-
 
     companion object{
         const val TAG = "LoginActivity"

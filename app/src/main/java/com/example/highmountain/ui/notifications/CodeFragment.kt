@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentCodeBinding
-
+import com.example.highmountain.ui.Preferences.PREF_CODE
 
 
 class CodeFragment : Fragment() {
@@ -32,18 +32,13 @@ class CodeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sharedPreferences = activity?.getSharedPreferences("code", Context.MODE_PRIVATE)
-        var editor = sharedPreferences?.edit()
-
         binding.buttonGuardarCode.setOnClickListener {
-            editor?.putString("code", binding.editTextCode.text.toString())
-            editor?.commit()
+            PREF_CODE = binding.editTextCode.text.toString()
             Toast.makeText(requireContext(), "Codigo Registrado com Sucesso!", Toast.LENGTH_LONG).show()
         }
 
         binding.button.setOnClickListener {
-            var code = sharedPreferences?.getString("code","0000")
-            Toast.makeText(requireContext(), code, Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), PREF_CODE, Toast.LENGTH_LONG).show()
         }
 
 
