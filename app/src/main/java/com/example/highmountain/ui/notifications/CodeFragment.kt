@@ -51,8 +51,6 @@ class CodeFragment : Fragment() {
     private fun deleteCodePin(){
         Log.d(TAG, "Pin apagado")
         requireContext().PREF_CODE = "apagar"
-        Toast.makeText(requireContext(), requireContext().PREF_CODE , Toast.LENGTH_LONG).show()
-
     }
 
 
