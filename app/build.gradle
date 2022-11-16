@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -34,6 +36,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.example.highmountain'
 }
 
 dependencies {
@@ -67,6 +70,8 @@ dependencies {
     kapt("androidx.room:room-compiler:2.4.3")
 
 
-
+    //material.io
+    implementation 'com.google.android.material:material:1.8.0-alpha02'
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 
 }
