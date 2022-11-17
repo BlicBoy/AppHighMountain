@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -14,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -47,13 +49,21 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //loading
         val loading = LoadingDialog(requireActivity())
         loading.startLoading()
-        Handler().postDelayed({ loading.isDismiss() }, 5000) //possivel alterar tempo
+        Handler().postDelayed({
+            if(loading.isOnline(requireContext())){
+                loading.isDismiss()
+            }else{
+                loading.isDismiss()
+                Toast.makeText(requireContext(),"Sem ligação a internet", Toast.LENGTH_SHORT).show()
+            }
+        }, 5000) //possivel alterar tempo
 
 
         binding.imageViewProfileAdmin.setOnClickListener {

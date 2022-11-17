@@ -1,13 +1,17 @@
 package com.example.highmountain.ui.home
 
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -15,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.highmountain.databinding.FragmentHomeBinding
 import com.example.highmountain.databinding.RowclientBinding
+import com.example.highmountain.ui.LoadingDialog
 import com.example.highmountain.ui.models.Clientes
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -40,9 +45,25 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        //loading
+        val loading = LoadingDialog(requireActivity())
+        loading.startLoading()
+        Handler().postDelayed({
+            if(loading.isOnline(requireContext())){
+                loading.isDismiss()
+                adapter.notifyDataSetChanged()
+            }else{
+                loading.isDismiss()
+                Toast.makeText(requireContext(),"Sem ligação a internet", Toast.LENGTH_SHORT).show()
+                clientes.clear()
+                adapter.notifyDataSetChanged()
+            }
+                              }, 5000) //possivel alterar tempo
         val db = Firebase.firestore
         db.collection("clientes")
             .addSnapshotListener{value , error ->

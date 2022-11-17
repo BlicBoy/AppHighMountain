@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        navView.menu.performIdentifierAction(R.id.navigation_dashboard,0)
 
 
     }
