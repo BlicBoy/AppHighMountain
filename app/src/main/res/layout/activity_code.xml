@@ -6,72 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".CodeActivity">
 
-    <EditText
-        android:id="@+id/editTextNumberPasswordInicio"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="numberPassword"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="176dp"
-        android:text="Codigo de Segurança"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editLay"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        app:boxBackgroundMode="none"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:endIconMode="password_toggle"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberPasswordInicio">
+        app:layout_constraintTop_toTopOf="parent">
 
+        <View
+            android:id="@+id/view1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_view_grey_oval" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTexts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:cursorVisible="false"
-            android:inputType="textPassword"
-            android:textSize="50sp"
-            android:maxLength="6"
-            android:textAlignment="textStart">
+        <View
+            android:id="@+id/view2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10sp"
+            android:background="@drawable/bg_view_grey_oval" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <View
+            android:id="@+id/view3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10sp"
+            android:background="@drawable/bg_view_grey_oval" />
 
+        <View
+            android:id="@+id/view4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10sp"
+            android:background="@drawable/bg_view_grey_oval" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/button1"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="190dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLay"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
             android:layout_width="match_parent"
@@ -86,13 +71,12 @@
         android:id="@+id/button2"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="190dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintStart_toEndOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/editLay"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
             android:layout_width="match_parent"
@@ -107,13 +91,12 @@
         android:id="@+id/button3"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="190dp"
         android:layout_marginEnd="40dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLay"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
             android:layout_width="match_parent"
@@ -133,8 +116,7 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/button1">
 
         <TextView
             android:layout_width="match_parent"
@@ -154,8 +136,7 @@
         app:cardElevation="10dp"
         app:layout_constraintEnd_toStartOf="@+id/button6"
         app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/button2">
 
         <TextView
             android:layout_width="match_parent"
@@ -175,8 +156,7 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/button3">
 
         <TextView
             android:layout_width="match_parent"
@@ -196,8 +176,7 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/button4">
 
         <TextView
             android:layout_width="match_parent"
@@ -217,8 +196,7 @@
         app:cardElevation="10dp"
         app:layout_constraintEnd_toStartOf="@+id/button9"
         app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/button5">
 
         <TextView
             android:layout_width="match_parent"
@@ -238,8 +216,7 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/button6">
 
         <TextView
             android:layout_width="match_parent"
@@ -255,12 +232,12 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="110dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/ok"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/delete"
-        app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:layout_constraintTop_toVottomOf="@id/editLay">
+        app:layout_constraintTop_toBottomOf="@+id/button8">
 
         <TextView
             android:layout_width="match_parent"
@@ -280,26 +257,5 @@
         android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button7"></ImageView>
-
-    <TextView
-        android:id="@+id/ok"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:gravity="center"
-        android:text="OK"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9"></TextView>
-
-    <Button
-        android:id="@+id/buttonEntrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="308dp"
-        android:text="Entrar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
