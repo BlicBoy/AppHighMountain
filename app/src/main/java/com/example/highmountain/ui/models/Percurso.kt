@@ -9,10 +9,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 data class Percurso(
 
     @PrimaryKey
-    var uIdPercurso : String?,
-    var dataPercurso : String?,
-    var uIdCriador : String?,
-    var descricaoPercurso : String?
+    var uIdPercurso : String,
+    var dataPercurso : String,
+    var uIdCriador : String,
+    var descricaoPercurso : String
 )
 {
     companion object{
@@ -33,4 +33,7 @@ interface PercursoDao{
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(percurso : Percurso)
+
+    @Delete
+    fun delete(percurso: Percurso)
 }

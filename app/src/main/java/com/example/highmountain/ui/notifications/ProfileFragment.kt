@@ -74,6 +74,11 @@ class ProfileFragment : Fragment() {
            findNavController().navigate(R.id.action_navigation_profile_to_codeFragment)
         }
 
+        binding.buttonLogout.setOnClickListener {
+            Firebase.auth.signOut()
+            startActivity(Intent(requireContext(),LoginActivity::class.java))
+        }
+
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val db = Firebase.firestore
         db.collection("administradores").document(uid)
