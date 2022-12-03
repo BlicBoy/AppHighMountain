@@ -13,18 +13,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.highmountain.LoginActivity
 import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentProfileBinding
 import com.example.highmountain.ui.LoadingDialog
-import com.example.highmountain.ui.models.Administrador
+import com.example.highmountain.ui.models.newUsers
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -38,6 +36,7 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    val auth = Firebase.auth.currentUser
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,33 +80,18 @@ class ProfileFragment : Fragment() {
 
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val db = Firebase.firestore
-        db.collection("administradores").document(uid)
+        db.collection("newUsers").document(uid)
             .addSnapshotListener { value, error ->
 
-                val admin = value?.let {
-                    Administrador.fromDoc(it)
+                val user = value?.let {
+                    newUsers.fromDoc(it)
                 }
-                binding.editTextAdminFirstName.setText(admin?.FirstName)
-                binding.editTextAdminLastName.setText(admin?.LastName)
-                binding.editTextAdminPhone.setText(admin?.numeroTelemovel)
-                binding.editTextAdminDate.setText(admin?.dataNascimento)
-                  admin?.photoFilename.let {
 
-                      val storage = Firebase.storage
-                      var storageRef = storage.reference
-                      var islandRef = storageRef.child("adminPhotos/${it}")
+                binding.editTextAdminFirstName.setText(user?.FirstName)
+                binding.editTextAdminLastName.setText(user?.LastName)
+                binding.editTextAdminPhone.setText(user?.numeroTelemovel)
+                binding.editTextAdminDate.setText(user?.dataNascimento)
 
-                      val ONE_MEGABYTE: Long = 10024 * 1024
-                      islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
-
-                          val inputStream = it.inputStream()
-                          val bitmap = BitmapFactory.decodeStream(inputStream)
-                          binding.imageViewProfileAdmin.setImageBitmap(bitmap)
-                      }.addOnFailureListener {
-                          // Handle any errors
-                          Log.d("Error", it.toString())
-                      }
-                  }
 
             }
 
@@ -115,19 +99,20 @@ class ProfileFragment : Fragment() {
             override fun onFocusChange(view: View?, hasFocus: Boolean) {
                 if (!hasFocus) {
                     when (view) {
-                        binding.editTextAdminFirstName -> {
-                            Administrador.postField(binding.editTextAdminFirstName.text.toString(), "FirstName")
-                        }
-                        binding.editTextAdminLastName->{
-                            Administrador.postField(binding.editTextAdminLastName.text.toString(), "LastName")
-                        }
-                        binding.editTextAdminPhone->{
-                            Administrador.postField(binding.editTextAdminPhone.text.toString(), "numeroTelemovel")
-                        }
-                        binding.editTextAdminDate->{
-                            Administrador.postField(binding.editTextAdminDate.text.toString(), "dataNascimento")
-                        }
 
+
+                       binding.editTextAdminFirstName -> {
+                           newUsers.newUserField(binding.editTextAdminFirstName.text.toString(), "FirstName")
+                       }
+                       binding.editTextAdminLastName->{
+                           newUsers.newUserField(binding.editTextAdminLastName.text.toString(), "LastName")
+                       }
+                       binding.editTextAdminPhone->{
+                           newUsers.newUserField(binding.editTextAdminPhone.text.toString(), "numeroTelemovel")
+                       }
+                       binding.editTextAdminDate->{
+                           newUsers.newUserField(binding.editTextAdminDate.text.toString(), "dataNascimento")
+                       }
 
 
                     }
@@ -159,7 +144,7 @@ class ProfileFragment : Fragment() {
                 binding.imageViewProfileAdmin.setImageBitmap(this)
                 uploadFile {
                     if (it != null) {
-                        Administrador.postField(it, "photoFilename")
+                      //  Administrador.postField(it, "photoFilename")
                     }
                 }
             }
@@ -221,7 +206,7 @@ class ProfileFragment : Fragment() {
             contentType = "image/jpg"
         }
 
-        val uploadTask = storageRef.child("adminPhotos/${file.lastPathSegment}")
+        val uploadTask = storageRef.child("newUserPhotos/${file.lastPathSegment}")
             .putFile(file, metadata)
 
         uploadTask.addOnProgressListener {
@@ -243,5 +228,6 @@ class ProfileFragment : Fragment() {
 
     companion object{
             const val REQUEST_IMAGE_CAPTURE = 1001
+        const val TAG = "ProfileFragment"
     }
 }

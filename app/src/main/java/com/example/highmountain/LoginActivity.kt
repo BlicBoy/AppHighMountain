@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.highmountain.databinding.ActivityLoginBinding
+import com.example.highmountain.ui.role_user
+import com.example.highmountain.ui.utilizador.ClienteActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
@@ -43,8 +46,8 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success")
-                            val user = auth.currentUser
-                            startActivity(Intent(this, MainActivity::class.java))
+
+                            redirectRole()
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -56,6 +59,31 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
+
+        binding.buttonRegisterLogin.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+    }
+
+    fun redirectRole (){
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        val db = Firebase.firestore
+        db.collection("newUsers").document(uid)
+            .addSnapshotListener { documento, error ->
+                if (documento != null) {
+                    this@LoginActivity.role_user = documento.getString("role")
+                   if(documento.getString("role") == "Cliente"){
+                       startActivity(Intent(this, ClienteActivity::class.java))
+                   }else{
+                       if(documento.getString("role") == "Administrador"){
+                           startActivity(Intent(this, MainActivity::class.java))
+                       }else{
+                           Toast.makeText(baseContext, "Error",
+                               Toast.LENGTH_SHORT).show()
+                       }
+                   }
+                }
+            }
     }
 
     companion object{
