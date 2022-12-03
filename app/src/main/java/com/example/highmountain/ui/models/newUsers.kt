@@ -11,7 +11,7 @@ data class newUsers(
     var FirstName : String?,
     var LastName : String?,
     var numeroTelemovel : String?,
-    // var photoURL : String?,
+     var photoURL : String?,
     var dataNascimento : String?,
     var sexualidade : String?,
     var role : String?,
@@ -25,7 +25,7 @@ data class newUsers(
             "FirstName" to FirstName,
             "LastName" to LastName,
             "numeroTelemovel" to numeroTelemovel,
-          //  "photoURL" to photoURL,
+            "photoURL" to photoURL,
             "dataNascimento" to dataNascimento,
             "sexualidade" to sexualidade,
             "role" to role
@@ -64,7 +64,7 @@ data class newUsers(
                 doc.getString("FirstName"),
                 doc.getString("LastName"),
                 doc.getString("numeroTelemovel"),
-            //    doc.getString("photoURL"),
+                doc.getString("photoURL"),
                 doc.getString("dataNascimento"),
                 doc.getString("sexualidade"),
                 doc.getString("role")

@@ -44,20 +44,19 @@ class InfoClienteActivity : AppCompatActivity() {
         val arrayAdapter = ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arraySpinner)
         spinnersex.adapter = arrayAdapter
 
-
         binding.imageViewInfoCliente.setOnClickListener{
             dispatchTakePictureIntent()
         }
 
         binding.buttonSaveInfoCliente.setOnClickListener {
-           // uploadFile { filename ->
-                // filename?.let{
+            uploadFile { filename ->
+                 filename?.let{
                     newUsers(
                         Firebase.auth.currentUser?.uid.toString(),
                         binding.editTextFirstNameInfoCliente.text.toString(),
                         binding.editTextLastNameInfoCliente.text.toString(),
                         binding.editTextPhoneInfoCliente.text.toString(),
-                       // it,
+                       it,
                         binding.editTextDataNascimentoInfoCliente.text.toString(),
                         spinnersex.selectedItem.toString(),
                         "Cliente"
@@ -69,10 +68,9 @@ class InfoClienteActivity : AppCompatActivity() {
                             startActivity(Intent(this,ClienteActivity::class.java))
                         }
                     }
-              //  }?: kotlin.run {
-               //     Toast.makeText(this,"Error",Toast.LENGTH_LONG).show()
-              //  }
-            //}
+                }?: kotlin.run { Toast.makeText(this,"Error",Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 
@@ -82,14 +80,11 @@ class InfoClienteActivity : AppCompatActivity() {
             // Ensure that there's a camera activity to handle the intent
             takePictureIntent.resolveActivity(
                 this.packageManager)?.also {
-                // Create the File where the photo should go
                 val photoFile: File? = try {
                     createImageFile()
                 } catch (ex: IOException) {
-                    // Error occurred while creating the File
                     null
                 }
-                // Continue only if the File was successfully created
                 photoFile?.also {
                     val photoURI: Uri = FileProvider.getUriForFile(
                         this,
@@ -156,7 +151,7 @@ class InfoClienteActivity : AppCompatActivity() {
                 binding.imageViewInfoCliente.setImageBitmap(this)
                 uploadFile {
                     if (it != null) {
-                      //  Administrador.postField(it, "photoFilename")
+                        newUsers.newUserField(it, "photoURL")
                     }
                 }
             }

@@ -33,7 +33,9 @@ var Context.role_user : String?
     set(value){
         val sharedPref = getSharedPreferences(Preferences.role_user, Context.MODE_PRIVATE) ?: return
         with (sharedPref.edit()) {
-            if (value != null) {
+            if(value == "apagar"){
+              clear()
+            } else if (value != null) {
                 putString(Preferences.role_user, value.toString())
             }
             commit()

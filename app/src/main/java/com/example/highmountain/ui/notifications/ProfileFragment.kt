@@ -22,7 +22,9 @@ import com.example.highmountain.LoginActivity
 import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentProfileBinding
 import com.example.highmountain.ui.LoadingDialog
+import com.example.highmountain.ui.PREF_CODE
 import com.example.highmountain.ui.models.newUsers
+import com.example.highmountain.ui.role_user
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -74,6 +76,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.buttonLogout.setOnClickListener {
+            deletePreferences()
             Firebase.auth.signOut()
             startActivity(Intent(requireContext(),LoginActivity::class.java))
         }
@@ -92,8 +95,26 @@ class ProfileFragment : Fragment() {
                 binding.editTextAdminPhone.setText(user?.numeroTelemovel)
                 binding.editTextAdminDate.setText(user?.dataNascimento)
 
+                user?.photoURL?.let {
+                    val storage = Firebase.storage
+                    val storageRef = storage.reference
+                    var islandRef = storageRef.child("newUserPhotos/${it}")
+
+                    val ONE_MEGABYTE: Long = 10024*1024
+                    islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+                        val inputStream = it.inputStream()
+                        val bitmap = BitmapFactory.decodeStream(inputStream)
+                        binding.imageViewProfileAdmin.setImageBitmap(bitmap)
+
+                    }
+                }
+
+
+
 
             }
+
+
 
         val focusChange = object : View.OnFocusChangeListener {
             override fun onFocusChange(view: View?, hasFocus: Boolean) {
@@ -126,9 +147,11 @@ class ProfileFragment : Fragment() {
         binding.editTextAdminDate.onFocusChangeListener = focusChange
     }
 
+    private fun deletePreferences() {
+        requireContext().PREF_CODE = "apagar"
+        requireContext().role_user = "apagar"
 
-
-
+    }
 
 
     override fun onDestroyView() {
@@ -145,6 +168,7 @@ class ProfileFragment : Fragment() {
                 uploadFile {
                     if (it != null) {
                       //  Administrador.postField(it, "photoFilename")
+                        newUsers.newUserField(it,"photoURL")
                     }
                 }
             }

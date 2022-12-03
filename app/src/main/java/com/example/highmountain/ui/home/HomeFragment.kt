@@ -1,12 +1,14 @@
 package com.example.highmountain.ui.home
 
 import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -20,6 +22,7 @@ import com.example.highmountain.ui.LoadingDialog
 import com.example.highmountain.ui.models.newUsers
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class HomeFragment : Fragment() {
 
@@ -86,7 +89,7 @@ class HomeFragment : Fragment() {
         inner class ViewHolder(binding: RowclientBinding) : RecyclerView.ViewHolder(binding.root) {
             val textviewNome :TextView = binding.textViewNomeClienteRow
             val textviewEmail : TextView = binding.textViewClienteEmailRow
-            // val imageViewPhoto : ImageView = binding.imageViewClienteRow
+            val imageViewPhoto : ImageView = binding.imageViewClienteRow
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -102,24 +105,16 @@ class HomeFragment : Fragment() {
 
 
             holder.apply {
-           //  // val storage = Firebase.storage
-           //   var storageRef = storage.reference
-           //   var islandRef = storageRef.child("adminPhotos/${itemCliente.urlPhoto}")
+                val storage = Firebase.storage
+                val storageRef = storage.reference
+                var islandRef = storageRef.child("newUserPhotos/${itemCliente.photoURL}")
 
-           //   val ONE_MEGABYTE: Long = 10024 * 1024
-           //       islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
-           //               val inputStream = it.inputStream()
-           //               val bitmap = BitmapFactory.decodeStream(inputStream)
-           //               imageViewPhoto.setImageBitmap(bitmap)
-           //           }.addOnFailureListener {
-           //               // Handle any errors
-           //               Log.d(TAG, it.toString())
-           //           }//
-
-
-
-
-
+                val ONE_MEGABYTE: Long = 10024*1024
+                islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+                    val inputStream = it.inputStream()
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+                    imageViewPhoto.setImageBitmap(bitmap)
+                }
                         textviewNome.text = itemCliente.FirstName
                         textviewEmail.text = itemCliente.role
                     }
