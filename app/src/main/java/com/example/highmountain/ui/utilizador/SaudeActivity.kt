@@ -20,6 +20,9 @@ class SaudeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_saude)
 
+        binding = ActivitySaudeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         supportActionBar?.hide()
 
         var tipoSangue = binding.editTextTipoSangue.text

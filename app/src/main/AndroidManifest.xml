@@ -24,13 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HighMountain"
         tools:targetApi="31">
-        <activity
-            android:name=".SaudeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -60,6 +54,14 @@
         </activity>
         <activity
             android:name=".ui.utilizador.ClienteActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".ui.utilizador.SaudeActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
