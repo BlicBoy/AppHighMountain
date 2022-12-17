@@ -3,6 +3,7 @@ package com.example.highmountain.ui.utilizador
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.highmountain.R
 import com.example.highmountain.databinding.ActivitySaudeBinding
@@ -27,24 +28,7 @@ class SaudeActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        var tipoSangue = binding.editTextTipoSangue.text
-        var alergias = binding.editTextAlergias.text
-        var doencas = binding.editTextDoencas.text
 
-        binding.buttonSalvarSaude.setOnClickListener{
-            DataSaude(
-                tipoSangue.toString(),
-                alergias.toString(),
-                doencas.toString()
-            ).saveDataSaude { error ->
-                error?.let {
-                    Toast.makeText(this,"Erro!", Toast.LENGTH_LONG).show()
-                }?: kotlin.run {
-                    Toast.makeText(this,"Guardado com sucesso!", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this,ClienteActivity::class.java))
-                }
-            }
-        }
 
 
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
@@ -59,11 +43,36 @@ class SaudeActivity : AppCompatActivity() {
                 }
                 binding.editTextTipoSangue.setText(data?.tipodeSangue)
                 binding.editTextAlergias.setText(data?.alergias)
-                binding.editTextDoencas.setText(data?.alergias)
+                binding.editTextDoencas.setText(data?.doencas)
             }
 
+        val focusChange = object : View.OnFocusChangeListener {
+            override fun onFocusChange(view: View?, hasFocus: Boolean) {
+                if(!hasFocus){
+                    when(view){
+                        binding.editTextTipoSangue ->{
+                            DataSaude.DataSaudeField(binding.editTextTipoSangue.text.toString(), "tipodeSangue")
+                        }
+                        binding.editTextAlergias->{
+                            DataSaude.DataSaudeField(binding.editTextAlergias.text.toString(), "alergias")
+                        }
+                        binding.editTextDoencas->{
+                            DataSaude.DataSaudeField(binding.editTextDoencas.text.toString(), "doencas")
+                        }
+                    }
+                }
+
+            }
+        }
+
+        binding.editTextTipoSangue.onFocusChangeListener = focusChange
+        binding.editTextAlergias.onFocusChangeListener = focusChange
+        binding.editTextDoencas.onFocusChangeListener = focusChange
 
 
 
     }
+
+
+
 }

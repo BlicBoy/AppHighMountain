@@ -37,6 +37,14 @@
         </provider>
 
         <activity
+            android:name=".ui.utilizador.InfoClienteSaudeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
@@ -59,7 +67,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".ui.utilizador.SaudeActivity"
             android:exported="true">

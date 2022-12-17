@@ -40,7 +40,7 @@ data class DataSaude(
 
     companion object{
 
-        fun DataSaudeFiel (name : String , field : String){
+        fun DataSaudeField (name : String , field : String){
             val uId = FirebaseAuth.getInstance().currentUser!!.uid
             val db = Firebase.firestore
 

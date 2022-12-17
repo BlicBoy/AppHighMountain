@@ -65,7 +65,7 @@ class InfoClienteActivity : AppCompatActivity() {
                             Toast.makeText(this,"Ocurreu algum erro!",Toast.LENGTH_LONG).show()
                         }?: kotlin.run {
                             Toast.makeText(this,"Guardado com sucesso!",Toast.LENGTH_LONG).show()
-                            startActivity(Intent(this,ClienteActivity::class.java))
+                            startActivity(Intent(this,InfoClienteSaudeActivity::class.java))
                         }
                     }
                 }?: kotlin.run { Toast.makeText(this,"Error",Toast.LENGTH_LONG).show()
