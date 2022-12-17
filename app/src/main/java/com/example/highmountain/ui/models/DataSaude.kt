@@ -9,7 +9,6 @@ import org.w3c.dom.DOMConfiguration
 import javax.security.auth.callback.Callback
 
 data class DataSaude(
-    var uId : String?,
     var tipodeSangue : String?,
     var alergias: String?,
     var doencas : String?,
@@ -17,7 +16,6 @@ data class DataSaude(
 
     fun toHaspMap() : HashMap<String, Any?>{
         return hashMapOf(
-            "uId" to uId,
             "tipodeSangue" to tipodeSangue,
             "alergias" to alergias,
             "doencas" to doencas
@@ -41,9 +39,22 @@ data class DataSaude(
     }
 
     companion object{
+
+        fun DataSaudeFiel (name : String , field : String){
+            val uId = FirebaseAuth.getInstance().currentUser!!.uid
+            val db = Firebase.firestore
+
+            db.collection("newUsers")
+                .document(uId)
+                .collection("Saude")
+                .document(uId)
+                .update(field, name)
+        }
+
+
+
         fun fromDoc(doc : DocumentSnapshot) : DataSaude{
             return DataSaude(
-                doc.getString("uId"),
                 doc.getString("tipodeSangue"),
                 doc.getString("alergias"),
                 doc.getString("doencas")

@@ -8,6 +8,8 @@ import com.example.highmountain.R
 import com.example.highmountain.databinding.ActivitySaudeBinding
 import com.example.highmountain.ui.models.DataSaude
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class SaudeActivity : AppCompatActivity() {
@@ -31,13 +33,10 @@ class SaudeActivity : AppCompatActivity() {
 
         binding.buttonSalvarSaude.setOnClickListener{
             DataSaude(
-                UUID.randomUUID().toString(),
                 tipoSangue.toString(),
                 alergias.toString(),
                 doencas.toString()
-            ).saveDataSaude {
-                error ->
-
+            ).saveDataSaude { error ->
                 error?.let {
                     Toast.makeText(this,"Erro!", Toast.LENGTH_LONG).show()
                 }?: kotlin.run {
@@ -46,5 +45,25 @@ class SaudeActivity : AppCompatActivity() {
                 }
             }
         }
+
+
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        val db = Firebase.firestore
+        db.collection("newUsers")
+            .document(uid)
+            .collection("Saude")
+            .document(uid)
+            .addSnapshotListener{ value , error ->
+                val data = value?.let {
+                    DataSaude.fromDoc(it)
+                }
+                binding.editTextTipoSangue.setText(data?.tipodeSangue)
+                binding.editTextAlergias.setText(data?.alergias)
+                binding.editTextDoencas.setText(data?.alergias)
+            }
+
+
+
+
     }
 }
