@@ -36,6 +36,9 @@ class ClienteActivity : AppCompatActivity() {
             auth.signOut()
             startActivity(Intent(this, SplashActivity::class.java))
         }
+        binding.buttonSaude.setOnClickListener(){
+            startActivity(Intent(this, SaudeActivity::class.java))
+        }
 
     }
 
