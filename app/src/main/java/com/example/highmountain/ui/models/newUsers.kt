@@ -11,7 +11,7 @@ data class newUsers(
     var FirstName : String?,
     var LastName : String?,
     var numeroTelemovel : String?,
-     var photoURL : String?,
+    var photoURL : String?,
     var dataNascimento : String?,
     var sexualidade : String?,
     var role : String?,

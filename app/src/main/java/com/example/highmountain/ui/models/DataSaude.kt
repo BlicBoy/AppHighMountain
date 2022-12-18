@@ -23,8 +23,8 @@ data class DataSaude(
     }
 
     fun saveDataSaude(callback: (error:String?) -> Unit){
+        
         val uId = FirebaseAuth.getInstance().currentUser!!.uid
-
         val db = Firebase.firestore
         db.collection("newUsers")
             .document(uId)
@@ -39,7 +39,6 @@ data class DataSaude(
     }
 
     companion object{
-
         fun DataSaudeField (name : String , field : String){
             val uId = FirebaseAuth.getInstance().currentUser!!.uid
             val db = Firebase.firestore
@@ -50,8 +49,6 @@ data class DataSaude(
                 .document(uId)
                 .update(field, name)
         }
-
-
 
         fun fromDoc(doc : DocumentSnapshot) : DataSaude{
             return DataSaude(
