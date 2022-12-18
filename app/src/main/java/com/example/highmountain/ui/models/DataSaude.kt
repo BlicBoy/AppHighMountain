@@ -23,7 +23,7 @@ data class DataSaude(
     }
 
     fun saveDataSaude(callback: (error:String?) -> Unit){
-        
+
         val uId = FirebaseAuth.getInstance().currentUser!!.uid
         val db = Firebase.firestore
         db.collection("newUsers")

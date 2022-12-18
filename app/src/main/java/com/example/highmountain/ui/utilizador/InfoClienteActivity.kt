@@ -41,7 +41,8 @@ class InfoClienteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val arraySpinner = listOf<String>("Masculino","Feminino","Não Binário")
-        val arrayAdapter = ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arraySpinner)
+         val arrayAdapter = ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arraySpinner)
+
         spinnersex.adapter = arrayAdapter
 
         binding.imageViewInfoCliente.setOnClickListener{
