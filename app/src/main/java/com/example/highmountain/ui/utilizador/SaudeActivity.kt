@@ -57,32 +57,14 @@ class SaudeActivity : AppCompatActivity() {
                 binding.editTextDoencas.setText(data?.doencas)
             }
 
-        val focusChange = object : View.OnFocusChangeListener {
-            override fun onFocusChange(view: View?, hasFocus: Boolean) {
-                if(!hasFocus){
-                    when(view){
-                        spinnertiposanguesaude->{
-                            Log.w("Teste" , "Aqui!")
-                            DataSaude.DataSaudeField(spinnertiposanguesaude.selectedItem.toString(), "tipodeSangue")
-                        }
-                        binding.editTextAlergias->{
-                            DataSaude.DataSaudeField(binding.editTextAlergias.text.toString(), "alergias")
-                        }
-                        binding.editTextDoencas->{
-                            DataSaude.DataSaudeField(binding.editTextDoencas.text.toString(), "doencas")
-                        }
-                    }
-                }
-
-            }
+        binding.buttonAlteraFichaSaude.setOnClickListener {
+            DataSaude.DataSaudeField(binding.editTextDoencas.text.toString(), "doencas")
+            DataSaude.DataSaudeField(binding.editTextAlergias.text.toString(), "alergias")
+            DataSaude.DataSaudeField( spinnertiposanguesaude.selectedItem.toString(), "tipodeSangue")
+            Toast.makeText(this,"Dados guardados com sucesso",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ClienteActivity :: class.java))
         }
-
-        spinnertiposanguesaude.onFocusChangeListener = focusChange
-        binding.editTextAlergias.onFocusChangeListener = focusChange
-        binding.editTextDoencas.onFocusChangeListener = focusChange
-
-
-
+        
     }
 
 
