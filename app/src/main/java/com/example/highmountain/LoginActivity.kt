@@ -78,8 +78,8 @@ class LoginActivity : AppCompatActivity() {
                        if(documento.getString("role") == "Administrador"){
                            startActivity(Intent(this, MainActivity::class.java))
                        }else{
-                           Toast.makeText(baseContext, "Error",
-                               Toast.LENGTH_SHORT).show()
+                          Toast.makeText(baseContext, "Error",
+                              Toast.LENGTH_SHORT).show()
                        }
                    }
                 }

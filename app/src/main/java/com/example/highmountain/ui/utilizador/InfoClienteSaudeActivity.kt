@@ -25,13 +25,15 @@ class InfoClienteSaudeActivity : AppCompatActivity() {
         binding = ActivityInfoClienteSaudeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val arraySpinner = listOf<String>("A+","A-","B+","B-","AB+-","AB-","O+","O-")
         val arrayAdapter = ArrayAdapter(this,androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arraySpinner)
         spinnertiposangue.adapter = arrayAdapter
 
         var alergias = binding.editTextalergiasInfoCliente.text
         var doencas = binding.editTextDoencasInfoCliente.text
+
+
+
 
         binding.buttonGuardarDataSaudeCliente.setOnClickListener {
             DataSaude(

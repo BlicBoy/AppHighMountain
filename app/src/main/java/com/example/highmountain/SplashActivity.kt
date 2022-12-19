@@ -43,7 +43,11 @@ class SplashActivity : AppCompatActivity() {
                   startActivity(Intent(this@SplashActivity,ClienteActivity::class.java))
               }else{
                   if (this@SplashActivity.PREF_CODE.isNullOrBlank()){
-                      startActivity(Intent(this@SplashActivity,MainActivity::class.java))
+                      if(this@SplashActivity.role_user == "Administrador"){
+                          startActivity(Intent(this@SplashActivity,MainActivity::class.java))
+                      }else{
+                          startActivity(Intent(this@SplashActivity,LoginActivity::class.java))
+                      }
                   }else{
                       startActivity(Intent(this@SplashActivity,CodeActivity::class.java))
                   }
