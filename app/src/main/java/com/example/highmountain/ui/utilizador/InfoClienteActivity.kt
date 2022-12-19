@@ -40,7 +40,7 @@ class InfoClienteActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(binding.root)
 
-        val arraySpinner = listOf<String>("Masculino","Feminino","Não Binário")
+         val arraySpinner = listOf<String>("Masculino","Feminino","Não Binário")
          val arrayAdapter = ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arraySpinner)
 
         spinnersex.adapter = arrayAdapter

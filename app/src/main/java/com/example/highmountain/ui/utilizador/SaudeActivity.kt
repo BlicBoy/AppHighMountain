@@ -64,7 +64,7 @@ class SaudeActivity : AppCompatActivity() {
             Toast.makeText(this,"Dados guardados com sucesso",Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, ClienteActivity :: class.java))
         }
-        
+
     }
 
 

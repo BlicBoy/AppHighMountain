@@ -39,6 +39,9 @@ class ClienteActivity : AppCompatActivity() {
         binding.buttonSaude.setOnClickListener(){
             startActivity(Intent(this, SaudeActivity::class.java))
         }
+        binding.buttonEditarInformacoes.setOnClickListener {
+            startActivity(Intent(this, ClientePerfilActivity::class.java))
+        }
 
     }
 
