@@ -42,6 +42,9 @@ class ClienteActivity : AppCompatActivity() {
         binding.buttonEditarInformacoes.setOnClickListener {
             startActivity(Intent(this, ClientePerfilActivity::class.java))
         }
+        binding.buttonEditpassword.setOnClickListener {
+            startActivity(Intent(this, EditPasswordActivity::class.java))
+        }
 
     }
 
