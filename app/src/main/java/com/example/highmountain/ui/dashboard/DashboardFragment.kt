@@ -1,5 +1,11 @@
 package com.example.highmountain.ui.dashboard
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.graphics.drawable.AdaptiveIconDrawable
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +25,7 @@ import com.example.highmountain.databinding.RowPercursoBinding
 import com.example.highmountain.ui.models.Percursos
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 import kotlinx.android.synthetic.main.row_percurso.*
 import kotlinx.coroutines.Dispatchers
@@ -76,6 +83,7 @@ class DashboardFragment : Fragment() {
 
             val textViewTituloPercurso : TextView = binding.textViewTitutloPercurso
             val textViewDataHoraPercurso : TextView = binding.textViewDataHoraPercurso
+            val background = binding.cardViewPercursos
 
 
         }
@@ -90,12 +98,34 @@ class DashboardFragment : Fragment() {
             )
         }
 
+
+
+        @SuppressLint("SuspiciousIndentation")
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var itemPercursos = percursosList[position]
-            holder.apply {
 
+            val apply = holder.apply {
                 textViewTituloPercurso.text = itemPercursos.Nome
                 textViewDataHoraPercurso.text = "Data de Inicio: " + itemPercursos.DataInicio
+                //background.setBackgroundResource(R.drawable.mountains)
+
+                val storage = Firebase.storage
+                val storageRef = storage.reference
+                var islandRef = storageRef.child("newUserPhotos/${itemPercursos.photoPercurso}")
+
+                val ONE_MEGABYTE: Long = 10024*1024
+                islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+                    val inputStream = it.inputStream()
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+                    background.setBackgroundDrawable(BitmapDrawable(context?.resources, bitmap))
+                }
+
+
+
+
+
+
+
             }
 
         }

@@ -7,10 +7,12 @@ data class Percursos
     var id : String?,
     var Nome : String?,
     var Descricao : String?,
+    var photoPercurso : String?,
     var DataCriacao : String?,
     var DataInicio: String?,
     var HoraInicio : String?,
-    var Criador : String?
+    var NomeCriador : String?,
+    var photoCriador : String?
     )
 {
         companion object{
@@ -19,10 +21,12 @@ data class Percursos
                     doc.getString("id"),
                     doc.getString("Nome"),
                     doc.getString("Descricao"),
+                    doc.getString("photoPercurso"),
                     doc.getString("DataCriacao"),
                     doc.getString("DataInicio"),
                     doc.getString("HoraInicio"),
-                    doc.getString("Criador")
+                    doc.getString("NomeCriador"),
+                    doc.getString("photoCriador")
                 )
             }
         }
