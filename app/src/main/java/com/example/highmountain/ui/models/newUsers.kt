@@ -45,10 +45,8 @@ data class newUsers(
                 callback(e.toString())
             }
     }
+
     companion object{
-
-
-
         fun newUserField(name: String, field: String){
             val uid = FirebaseAuth.getInstance().currentUser!!.uid
             val db = Firebase.firestore
