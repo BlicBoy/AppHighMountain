@@ -47,11 +47,6 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonAddPercurso.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_dashboard_to_percursoAddFragment)
-        }
-
-
         val db = Firebase.firestore
         db.collection("newPercursos")
             .addSnapshotListener{value, error->
@@ -97,14 +92,11 @@ class DashboardFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var itemPercursos = percursosList[position]
-
-
             holder.apply {
 
                 textViewTituloPercurso.text = itemPercursos.Nome
                 textViewDataHoraPercurso.text = "Data de Inicio: " + itemPercursos.DataInicio
             }
-
 
         }
 

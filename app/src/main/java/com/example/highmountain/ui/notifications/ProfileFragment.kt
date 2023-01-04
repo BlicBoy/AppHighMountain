@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
@@ -31,6 +32,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
+import kotlinx.android.synthetic.main.activity_cliente_perfil.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
 import java.io.IOException
 
@@ -66,6 +69,9 @@ class ProfileFragment : Fragment() {
             }
         }, 5000) //possivel alterar tempo
 
+        val arraySpinner = listOf<String>("Masculino","Feminino","Não Binário")
+        val arrayAdapter = ArrayAdapter<String>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arraySpinner)
+        spinnersexadmin.adapter = arrayAdapter
 
         binding.imageViewProfileAdmin.setOnClickListener {
             dispatchTakePictureIntent()
@@ -95,6 +101,10 @@ class ProfileFragment : Fragment() {
                 binding.editTextAdminPhone.setText(user?.numeroTelemovel)
                 binding.editTextAdminDate.setText(user?.dataNascimento)
 
+
+                var position : String = user?.sexualidade.toString()
+                var spinnerPosition = arrayAdapter.getPosition(position)
+                spinnersexadmin.setSelection(spinnerPosition)
                 user?.photoURL?.let {
                     val storage = Firebase.storage
                     val storageRef = storage.reference
@@ -109,42 +119,17 @@ class ProfileFragment : Fragment() {
                     }
                 }
 
-
-
-
             }
 
 
 
-        val focusChange = object : View.OnFocusChangeListener {
-            override fun onFocusChange(view: View?, hasFocus: Boolean) {
-                if (!hasFocus) {
-                    when (view) {
-
-
-                       binding.editTextAdminFirstName -> {
-                           newUsers.newUserField(binding.editTextAdminFirstName.text.toString(), "FirstName")
-                       }
-                       binding.editTextAdminLastName->{
-                           newUsers.newUserField(binding.editTextAdminLastName.text.toString(), "LastName")
-                       }
-                       binding.editTextAdminPhone->{
-                           newUsers.newUserField(binding.editTextAdminPhone.text.toString(), "numeroTelemovel")
-                       }
-                       binding.editTextAdminDate->{
-                           newUsers.newUserField(binding.editTextAdminDate.text.toString(), "dataNascimento")
-                       }
-
-
-                    }
-                }
-            }
-
+        binding.buttonSalveProfile.setOnClickListener{
+            newUsers.newUserField(spinnersexadmin.selectedItem.toString(), "sexualidade")
+            newUsers.newUserField(binding.editTextAdminFirstName.text.toString(), "FirstName")
+            newUsers.newUserField(binding.editTextAdminLastName.text.toString(), "LastName")
+            newUsers.newUserField(binding.editTextAdminDate.text.toString(), "dataNascimento")
+            newUsers.newUserField(binding.editTextAdminPhone.text.toString(), "numeroTelemovel")
         }
-        binding.editTextAdminFirstName.onFocusChangeListener = focusChange
-        binding.editTextAdminLastName.onFocusChangeListener = focusChange
-        binding.editTextAdminPhone.onFocusChangeListener = focusChange
-        binding.editTextAdminDate.onFocusChangeListener = focusChange
     }
 
     private fun deletePreferences() {

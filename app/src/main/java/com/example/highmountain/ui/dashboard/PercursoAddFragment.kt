@@ -32,17 +32,7 @@ class PercursoAddFragment : Fragment() {
             if(binding.editTextDatePercurso.text.isNullOrBlank() ||  binding.editTextTextMultiLineDescricao.text.isNullOrBlank()){
                 Toast.makeText(requireContext(), "Não preencheu todos os campos",Toast.LENGTH_SHORT).show()
             }else{
-              //  lifecycleScope.launch(Dispatchers.IO){
-              //      AppDatabase.getDatabase(requireContext())?.percursosDao()?.insert(
-              //          Percurso(
-              //              UUID.randomUUID().toString(),
-              //              binding.editTextDatePercurso.text.toString(),
-              //              FirebaseAuth.getInstance().currentUser!!.uid.toString(),
-              //              binding.editTextTextMultiLineDescricao.text.toString()
-              //          )
-              //      )
-//
-              //  }
+
                 Toast.makeText(requireContext(), "Criado com sucesso!",Toast.LENGTH_SHORT).show()
                 findNavController().popBackStack() //provisório aqui
                 //fazer depois para inserir na base de dados
