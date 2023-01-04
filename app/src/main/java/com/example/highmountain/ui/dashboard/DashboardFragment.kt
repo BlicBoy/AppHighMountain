@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentDashboardBinding
 import com.example.highmountain.databinding.RowPercursoBinding
+import com.example.highmountain.ui.models.Percursos
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 import kotlinx.android.synthetic.main.row_percurso.*
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +31,7 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
 
+    var percursosList = arrayListOf<Percursos>()
     val adapter = PercursosAdapter()
 
 
@@ -47,6 +51,17 @@ class DashboardFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_dashboard_to_percursoAddFragment)
         }
 
+
+        val db = Firebase.firestore
+        db.collection("newPercursos")
+            .addSnapshotListener{value, error->
+                percursosList.clear()
+                for (doc in value?.documents!!){
+                    percursosList.add(Percursos.fromDoc(doc))
+                }
+               adapter.notifyDataSetChanged()
+            }
+
         binding.recyclerViewPercursos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewPercursos.adapter = adapter
         binding.recyclerViewPercursos.itemAnimator = DefaultItemAnimator()
@@ -59,10 +74,6 @@ class DashboardFragment : Fragment() {
         _binding = null
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
 
 
     inner class PercursosAdapter : RecyclerView.Adapter<PercursosAdapter.ViewHolder>(){
@@ -70,7 +81,6 @@ class DashboardFragment : Fragment() {
 
             val textViewTituloPercurso : TextView = binding.textViewTitutloPercurso
             val textViewDataHoraPercurso : TextView = binding.textViewDataHoraPercurso
-            val BotaoDelete : Button = binding.buttonDelete
 
 
         }
@@ -86,25 +96,20 @@ class DashboardFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        var itemPercursos = percursosList[position]
 
 
             holder.apply {
-               
 
-                //Fazer aqui depois as ações clicar etc...
-
-
+                textViewTituloPercurso.text = itemPercursos.Nome
+                textViewDataHoraPercurso.text = "Data de Inicio: " + itemPercursos.DataInicio
             }
-
-
-
 
 
         }
 
         override fun getItemCount(): Int {
-            return 0
+            return percursosList.size
         }
 
     }
