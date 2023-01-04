@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_codeFragment"
             app:destination="@id/codeFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_alterarPasswordFragment"
+            app:destination="@id/alterarPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/codeFragment"
@@ -40,4 +43,9 @@
         android:name="com.example.highmountain.ui.dashboard.PercursoAddFragment"
         android:label="fragment_percurso_add"
         tools:layout="@layout/fragment_percurso_add" />
+    <fragment
+        android:id="@+id/alterarPasswordFragment"
+        android:name="com.example.highmountain.ui.notifications.AlterarPasswordFragment"
+        android:label="fragment_alterar_password"
+        tools:layout="@layout/fragment_alterar_password" />
 </navigation>

@@ -33,14 +33,15 @@ class EditPasswordActivity : AppCompatActivity() {
 
 
         binding.buttonSaveUpdatePassword.setOnClickListener {
-            val password = binding.editTextTextPasswordUpdate.text
-             val passwordRepeat = binding.editTextTextPasswordUpdate2.text
-            val oldPassword = binding.editTextTextOldPassword.text
-            credential = EmailAuthProvider.getCredential(auth.currentUser?.email.toString(), oldPassword.toString())
+            var password = binding.editTextTextPasswordUpdate.text
+             var passwordRepeat = binding.editTextTextPasswordUpdate2.text
+            var oldPassword = binding.editTextTextOldPassword.text
+
 
             if(password.isNullOrBlank() || passwordRepeat.isNullOrBlank() || oldPassword.isNullOrBlank()){
                 Toast.makeText(this, "As passwords estão vazias!",Toast.LENGTH_SHORT).show()
             }else{
+                credential = EmailAuthProvider.getCredential(auth.currentUser?.email.toString(), oldPassword.toString())
                 if(password.toString() != passwordRepeat.toString()){
                     Toast.makeText(this, "As passwords não são iguais!",Toast.LENGTH_SHORT).show()
 

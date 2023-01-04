@@ -87,6 +87,10 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(requireContext(),LoginActivity::class.java))
         }
 
+        binding.buttonAlterarPasswordAdmin.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_profile_to_alterarPasswordFragment)
+        }
+
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val db = Firebase.firestore
         db.collection("newUsers").document(uid)

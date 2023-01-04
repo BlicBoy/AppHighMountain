@@ -24,15 +24,16 @@
 
     <ImageView
         android:id="@+id/imageViewProfileAdmin"
-        android:layout_width="334dp"
-        android:layout_height="146dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="143dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_person_24"
-        tools:src="@drawable/ic_baseline_person_24" />
+        app:srcCompat="@drawable/nopic"
+        tools:src="@drawable/nopic" />
 
     <EditText
         android:id="@+id/editTextAdminFirstName"
@@ -68,12 +69,11 @@
         android:id="@+id/buttonCodeAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:text="Codigo de Segurança"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.919"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSalveProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAlterarPasswordAdmin" />
 
     <EditText
         android:id="@+id/editTextAdminDate"
@@ -95,10 +95,9 @@
         android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonCodeAdmin" />
 
@@ -124,5 +123,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAdminDate"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/buttonAlterarPasswordAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Alterar Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSalveProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
