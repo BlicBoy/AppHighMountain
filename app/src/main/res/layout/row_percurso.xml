@@ -5,7 +5,9 @@
     android:id="@+id/cardViewPercursos"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="4dp">
 
     <TextView
         android:id="@+id/textViewTitutloPercurso"
@@ -43,8 +45,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:text="Fazer Medições"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toEndOf="@+id/buttonmoreinfo"
         app:layout_constraintTop_toBottomOf="@+id/textViewDataHoraPercurso" />
 
@@ -52,9 +55,10 @@
         android:id="@+id/buttonmoreinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Mais Informações"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDataHoraPercurso" />
 
