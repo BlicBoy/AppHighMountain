@@ -117,11 +117,18 @@ class DashboardFragment : Fragment() {
                     val bitmap = BitmapFactory.decodeStream(inputStream)
                     background.setBackgroundDrawable(BitmapDrawable(context?.resources, bitmap))
 
+                    islandRef = storageRef.child("newUserPhotos/${itemPercursos.photoCriador}")
+                    islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+                        val input = it.inputStream()
+                        var photoAdmin = BitmapFactory.decodeStream(input)
+                        buttonInfo.setOnClickListener {
+                            showDetailsPercurso(bitmap, itemPercursos.NomeCriador.toString(), itemPercursos.DataCriacao.toString(), itemPercursos.Descricao.toString(), itemPercursos.DataInicio.toString(), itemPercursos.HoraInicio.toString(), photoAdmin)
 
-                    buttonInfo.setOnClickListener {
-                        showDetailsPercurso(bitmap, itemPercursos.NomeCriador.toString(), itemPercursos.DataCriacao.toString(), itemPercursos.Descricao.toString(), itemPercursos.DataInicio.toString(), itemPercursos.HoraInicio.toString())
-
+                        }
                     }
+
+
+
 
                 }
 
@@ -132,20 +139,21 @@ class DashboardFragment : Fragment() {
         }
 
 
-        private fun showDetailsPercurso(imagePercurso : Bitmap, nomeCriador : String, DataCriacaoPercurso : String, descricaoPercurso : String, datainicio: String, horaInicio: String ){
+        private fun showDetailsPercurso(imagePercurso : Bitmap, nomeCriador : String, DataCriacaoPercurso : String, descricaoPercurso : String, datainicio: String, horaInicio: String, photoPerson : Bitmap ){
             val dialog = BottomSheetDialog(requireContext())
             dialog.setContentView(R.layout.details_percursos)
             val photoPercurso : ImageView = dialog.findViewById<ImageView>(R.id.imageViewDetailsPercurso)!!
             val nomeAdmin : TextView = dialog.findViewById<TextView>(R.id.textViewDetailsPercursoAdminNome)!!
             val dataCriacao : TextView = dialog.findViewById<TextView>(R.id.editTextDataCriacaoPercurso)!!
             val descricao : TextView = dialog.findViewById<TextView>(R.id.textViewDetailsPercursoDescricao)!!
+            val photoAdmin : ImageView = dialog.findViewById<ImageView>(R.id.imageViewDetailsPercursoAdmin)!!
 
 
             photoPercurso.setBackgroundDrawable(BitmapDrawable(context?.resources, imagePercurso))
             nomeAdmin.text = nomeCriador
             dataCriacao.text = "Data de Criação de Percurso: " + DataCriacaoPercurso
             descricao.text = "Data de Inicio: " + datainicio + "\nHora de Inicio:"+ horaInicio+"\nDescrição:"+descricaoPercurso
-
+            photoAdmin.setImageBitmap(photoPerson)
 
 
             dialog.show()
