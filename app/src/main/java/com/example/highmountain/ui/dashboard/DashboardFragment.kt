@@ -1,21 +1,17 @@
 package com.example.highmountain.ui.dashboard
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.AdaptiveIconDrawable
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,13 +19,13 @@ import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentDashboardBinding
 import com.example.highmountain.databinding.RowPercursoBinding
 import com.example.highmountain.ui.models.Percursos
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.row_percurso.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class DashboardFragment : Fragment() {
 
@@ -84,6 +80,7 @@ class DashboardFragment : Fragment() {
             val textViewTituloPercurso : TextView = binding.textViewTitutloPercurso
             val textViewDataHoraPercurso : TextView = binding.textViewDataHoraPercurso
             val background = binding.cardViewPercursos
+            val buttonInfo = binding.buttonmoreinfo
 
 
         }
@@ -104,6 +101,7 @@ class DashboardFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var itemPercursos = percursosList[position]
 
+
             val apply = holder.apply {
                 textViewTituloPercurso.text = itemPercursos.Nome
                 textViewDataHoraPercurso.text = "Data de Inicio: " + itemPercursos.DataInicio
@@ -118,15 +116,39 @@ class DashboardFragment : Fragment() {
                     val inputStream = it.inputStream()
                     val bitmap = BitmapFactory.decodeStream(inputStream)
                     background.setBackgroundDrawable(BitmapDrawable(context?.resources, bitmap))
+
+
+                    buttonInfo.setOnClickListener {
+                        showDetailsPercurso(bitmap, itemPercursos.NomeCriador.toString(), itemPercursos.DataCriacao.toString(), itemPercursos.Descricao.toString(), itemPercursos.DataInicio.toString(), itemPercursos.HoraInicio.toString())
+
+                    }
+
                 }
 
 
 
-
-
-
-
             }
+
+        }
+
+
+        private fun showDetailsPercurso(imagePercurso : Bitmap, nomeCriador : String, DataCriacaoPercurso : String, descricaoPercurso : String, datainicio: String, horaInicio: String ){
+            val dialog = BottomSheetDialog(requireContext())
+            dialog.setContentView(R.layout.details_percursos)
+            val photoPercurso : ImageView = dialog.findViewById<ImageView>(R.id.imageViewDetailsPercurso)!!
+            val nomeAdmin : TextView = dialog.findViewById<TextView>(R.id.textViewDetailsPercursoAdminNome)!!
+            val dataCriacao : TextView = dialog.findViewById<TextView>(R.id.editTextDataCriacaoPercurso)!!
+            val descricao : TextView = dialog.findViewById<TextView>(R.id.textViewDetailsPercursoDescricao)!!
+
+
+            photoPercurso.setBackgroundDrawable(BitmapDrawable(context?.resources, imagePercurso))
+            nomeAdmin.text = nomeCriador
+            dataCriacao.text = "Data de Criação de Percurso: " + DataCriacaoPercurso
+            descricao.text = "Data de Inicio: " + datainicio + "\nHora de Inicio:"+ horaInicio+"\nDescrição:"+descricaoPercurso
+
+
+
+            dialog.show()
 
         }
 
@@ -136,3 +158,6 @@ class DashboardFragment : Fragment() {
 
     }
 }
+
+
+
