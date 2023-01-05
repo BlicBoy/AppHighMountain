@@ -27,6 +27,5 @@ interface MedicoesDao{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(medicoes : Medicoes)
 
-   // @Query("SELECT * FROM medicoes WHERE uIdUtilizador=:uIdUtilizador")
-    // fun loadByReference(reference: String): List<Medicoes>
+
 }
