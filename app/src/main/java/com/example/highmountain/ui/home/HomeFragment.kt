@@ -48,19 +48,19 @@ class HomeFragment : Fragment() {
 
 
         //loading
-        val loading = LoadingDialog(requireActivity())
-        loading.startLoading()
-        Handler().postDelayed({
-            if(loading.isOnline(requireContext())){
-                loading.isDismiss()
-                adapter.notifyDataSetChanged()
-            }else{
-                loading.isDismiss()
-                Toast.makeText(requireContext(),"Sem ligação a internet", Toast.LENGTH_SHORT).show()
-                newUsersList.clear()
-                adapter.notifyDataSetChanged()
-            }
-                              }, 5000) //possivel alterar tempo
+      // val loading = LoadingDialog(requireActivity())
+      // loading.startLoading()
+      // Handler().postDelayed({
+      //     if(loading.isOnline(requireContext())){
+      //         loading.isDismiss()
+      //         adapter.notifyDataSetChanged()
+      //     }else{
+      //         loading.isDismiss()
+      //         Toast.makeText(requireContext(),"Sem ligação a internet", Toast.LENGTH_SHORT).show()
+      //         newUsersList.clear()
+      //         adapter.notifyDataSetChanged()
+      //     }
+      //                       }, 5000) //possivel alterar tempo
         val db = Firebase.firestore
         db.collection("newUsers")
             .addSnapshotListener{value , error ->
