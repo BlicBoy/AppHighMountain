@@ -17,8 +17,8 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
-            android:id="@+id/action_navigation_dashboard_to_percursoAddFragment"
-            app:destination="@id/percursoAddFragment" />
+            android:id="@+id/action_navigation_dashboard_to_listPercursoFragment"
+            app:destination="@id/listPercursoFragment" />
     </fragment>
 
     <fragment
@@ -39,13 +39,13 @@
         android:label="fragment_code"
         tools:layout="@layout/fragment_code" />
     <fragment
-        android:id="@+id/percursoAddFragment"
-        android:name="com.example.highmountain.ui.dashboard.PercursoAddFragment"
-        android:label="fragment_percurso_add"
-        tools:layout="@layout/fragment_percurso_add" />
-    <fragment
         android:id="@+id/alterarPasswordFragment"
         android:name="com.example.highmountain.ui.notifications.AlterarPasswordFragment"
         android:label="fragment_alterar_password"
         tools:layout="@layout/fragment_alterar_password" />
+    <fragment
+        android:id="@+id/listPercursoFragment"
+        android:name="com.example.highmountain.ui.dashboard.ListPercursoFragment"
+        android:label="fragment_list_percurso"
+        tools:layout="@layout/fragment_list_percurso" />
 </navigation>

@@ -49,14 +49,12 @@ class AlterarPasswordFragment : Fragment() {
             var passwordRepeat = binding.editTextTextEditRepeatPasswordAdmin.text
             var oldPassword = binding.editTextTextPasswordOldAdmin.text
 
-
             if(password.isNullOrBlank() || passwordRepeat.isNullOrBlank() || oldPassword.isNullOrBlank()){
                 Toast.makeText(requireContext(), "As passwords estão vazias!", Toast.LENGTH_SHORT).show()
             }else{
                 credential = EmailAuthProvider.getCredential(auth.currentUser?.email.toString(), oldPassword.toString())
                 if(password.toString() != passwordRepeat.toString()){
                     Toast.makeText(requireContext(), "As passwords não são iguais!", Toast.LENGTH_SHORT).show()
-
                 }else{
                     auth.currentUser?.reauthenticate(credential)
                         ?.addOnCompleteListener { task ->
@@ -77,8 +75,6 @@ class AlterarPasswordFragment : Fragment() {
                 }
             }
         }
-
-
     }
 
 

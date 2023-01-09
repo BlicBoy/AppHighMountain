@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,9 +35,6 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
 
-    var percursosList = arrayListOf<Percursos>()
-    val adapter = PercursosAdapter()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,122 +48,18 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val db = Firebase.firestore
-        db.collection("newPercursos")
-            .addSnapshotListener{value, error->
-                percursosList.clear()
-                for (doc in value?.documents!!){
-                    percursosList.add(Percursos.fromDoc(doc))
-                }
-               adapter.notifyDataSetChanged()
-            }
+        binding.imageButtonListarPercurso.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_dashboard_to_listPercursoFragment)
+        }
+        binding.imageButtonfazerMedicoes.setOnClickListener {
 
-        binding.recyclerViewPercursos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        binding.recyclerViewPercursos.adapter = adapter
-        binding.recyclerViewPercursos.itemAnimator = DefaultItemAnimator()
-
-
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        }
     }
 
 
 
-    inner class PercursosAdapter : RecyclerView.Adapter<PercursosAdapter.ViewHolder>(){
-        inner class ViewHolder(binding: RowPercursoBinding) : RecyclerView.ViewHolder(binding.root) {
-
-            val textViewTituloPercurso : TextView = binding.textViewTitutloPercurso
-            val textViewDataHoraPercurso : TextView = binding.textViewDataHoraPercurso
-            val background = binding.cardViewPercursos
-            val buttonInfo = binding.buttonmoreinfo
-
-
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            return ViewHolder(
-                RowPercursoBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
-        }
-
-
-
-        @SuppressLint("SuspiciousIndentation")
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var itemPercursos = percursosList[position]
-
-
-            val apply = holder.apply {
-                textViewTituloPercurso.text = itemPercursos.Nome
-                textViewDataHoraPercurso.text = "Data de Inicio: " + itemPercursos.DataInicio
-                //background.setBackgroundResource(R.drawable.mountains)
-
-                val storage = Firebase.storage
-                val storageRef = storage.reference
-                var islandRef = storageRef.child("newUserPhotos/${itemPercursos.photoPercurso}")
-
-                val ONE_MEGABYTE: Long = 10024*1024
-                islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
-                    val inputStream = it.inputStream()
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
-                    background.setBackgroundDrawable(BitmapDrawable(context?.resources, bitmap))
-
-                    islandRef = storageRef.child("newUserPhotos/${itemPercursos.photoCriador}")
-                    islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
-                        val input = it.inputStream()
-                        var photoAdmin = BitmapFactory.decodeStream(input)
-                        buttonInfo.setOnClickListener {
-                            showDetailsPercurso(bitmap, itemPercursos.NomeCriador.toString(), itemPercursos.DataCriacao.toString(), itemPercursos.Descricao.toString(), itemPercursos.DataInicio.toString(), itemPercursos.HoraInicio.toString(), photoAdmin)
-
-                        }
-                    }
-
-
-
-
-                }
-
-
-
-            }
-
-        }
-
-
-        private fun showDetailsPercurso(imagePercurso : Bitmap, nomeCriador : String, DataCriacaoPercurso : String, descricaoPercurso : String, datainicio: String, horaInicio: String, photoPerson : Bitmap ){
-            val dialog = BottomSheetDialog(requireContext())
-            dialog.setContentView(R.layout.details_percursos)
-            val photoPercurso : ImageView = dialog.findViewById<ImageView>(R.id.imageViewDetailsPercurso)!!
-            val nomeAdmin : TextView = dialog.findViewById<TextView>(R.id.textViewDetailsPercursoAdminNome)!!
-            val dataCriacao : TextView = dialog.findViewById<TextView>(R.id.editTextDataCriacaoPercurso)!!
-            val descricao : TextView = dialog.findViewById<TextView>(R.id.textViewDetailsPercursoDescricao)!!
-            val photoAdmin : ImageView = dialog.findViewById<ImageView>(R.id.imageViewDetailsPercursoAdmin)!!
-
-
-            photoPercurso.setBackgroundDrawable(BitmapDrawable(context?.resources, imagePercurso))
-            nomeAdmin.text = nomeCriador
-            dataCriacao.text = "Data de Criação de Percurso: " + DataCriacaoPercurso
-            descricao.text = "Data de Inicio: " + datainicio + "\nHora de Inicio:"+ horaInicio+"\nDescrição:"+descricaoPercurso
-            photoAdmin.setImageBitmap(photoPerson)
-
-
-            dialog.show()
-
-        }
-
-        override fun getItemCount(): Int {
-            return percursosList.size
-        }
-
-    }
 }
+
 
 
 

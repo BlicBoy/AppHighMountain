@@ -11,6 +11,7 @@ data class Percursos
     var DataCriacao : String?,
     var DataInicio: String?,
     var HoraInicio : String?,
+    var IdCriador : String?,
     var NomeCriador : String?,
     var photoCriador : String?
     )
@@ -25,6 +26,7 @@ data class Percursos
                     doc.getString("DataCriacao"),
                     doc.getString("DataInicio"),
                     doc.getString("HoraInicio"),
+                    doc.getString("IdCriador"),
                     doc.getString("NomeCriador"),
                     doc.getString("photoCriador")
                 )
