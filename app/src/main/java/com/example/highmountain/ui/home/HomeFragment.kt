@@ -66,7 +66,8 @@ class HomeFragment : Fragment() {
             .addSnapshotListener{value , error ->
                 newUsersList.clear()
                 for (doc in value?.documents!!){
-                    newUsersList.add(newUsers.fromDoc(doc))
+                    if(doc.getString("role") == "Cliente")
+                        newUsersList.add(newUsers.fromDoc(doc))
                 }
                 adapter.notifyDataSetChanged()
             }
@@ -74,6 +75,11 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewClientes.adapter = adapter
         binding.recyclerViewClientes.itemAnimator = DefaultItemAnimator()
+
+
+        if(newUsersList.size <= 0){
+            Toast.makeText(requireContext(),"Nenhum cliente registrado!", Toast.LENGTH_SHORT).show()
+        }
 
 
     }

@@ -1,13 +1,22 @@
 package com.example.highmountain
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.content.IntentSender
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.highmountain.databinding.ActivityMainBinding
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +45,51 @@ class MainActivity : AppCompatActivity() {
 
         navView.menu.performIdentifierAction(R.id.navigation_dashboard,0)
 
+       locationRequestUser()
+    }
 
+    fun locationRequestUser(){
+        val locationRequest = LocationRequest.create().apply {
+            interval = 3000
+            priority = Priority.PRIORITY_HIGH_ACCURACY
+        }
+
+        val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+        val task = LocationServices.getSettingsClient(applicationContext)
+            .checkLocationSettings(builder.build())
+
+
+        task
+            .addOnSuccessListener {
+                    response ->
+
+                val states = response.locationSettingsStates
+                if(states!!.isLocationPresent){
+                    //Toast.makeText(applicationContext, "GPS DETECTADO COM SUCESSO!", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            .addOnFailureListener { e ->
+                val statusCode = (e as ResolvableApiException).statusCode
+                if(statusCode == LocationSettingsStatusCodes.RESOLUTION_REQUIRED){
+                    try {
+                        Toast.makeText(applicationContext, "GPS NÃO DETECTADO!", Toast.LENGTH_SHORT).show()
+                        e.startResolutionForResult(this, 100)
+
+                    }catch (sendEx: IntentSender.SendIntentException){}
+                }
+            }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 100){
+            if(resultCode == RESULT_OK){
+               startActivity(intent)
+                overridePendingTransition(0, 1)
+            }
+        }
     }
 }

@@ -63,8 +63,6 @@ class MedicoesFragment : Fragment() {
     }
 
 
-
-
     companion object {
 
     }
