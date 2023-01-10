@@ -64,6 +64,7 @@ class DashboardFragment : Fragment() {
             }
         }
         binding.imageButtonfazerMedicoes.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_dashboard_to_medicoesFragment)
 
         }
     }

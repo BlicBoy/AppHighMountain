@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_dashboard_to_listPercursoFragment"
             app:destination="@id/listPercursoFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_medicoesFragment"
+            app:destination="@id/medicoesFragment" />
     </fragment>
 
     <fragment
@@ -48,4 +51,9 @@
         android:name="com.example.highmountain.ui.dashboard.ListPercursoFragment"
         android:label="fragment_list_percurso"
         tools:layout="@layout/fragment_list_percurso" />
+    <fragment
+        android:id="@+id/medicoesFragment"
+        android:name="com.example.highmountain.ui.dashboard.MedicoesFragment"
+        android:label="fragment_medicoes"
+        tools:layout="@layout/fragment_medicoes" />
 </navigation>
