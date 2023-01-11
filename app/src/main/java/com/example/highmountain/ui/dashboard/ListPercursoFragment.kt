@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentListPercursoBinding
 import com.example.highmountain.databinding.RowPercursoBinding
 import com.example.highmountain.ui.models.Percursos
+import com.example.highmountain.ui.percursoAtivo
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -79,6 +81,7 @@ class ListPercursoFragment : Fragment() {
             val textViewDataHoraPercurso : TextView = binding.textViewDataHoraPercurso
             val background = binding.cardViewPercursos
             val buttonInfo = binding.buttonmoreinfo
+            val buttonActivatePercursos = binding.buttonativarpercurso
 
 
         }
@@ -130,6 +133,12 @@ class ListPercursoFragment : Fragment() {
                                 )
 
                             }
+
+                            buttonActivatePercursos.setOnClickListener{
+                                    this@ListPercursoFragment.requireContext().percursoAtivo = itemPercursos.id
+                                    Toast.makeText(requireContext(), "Ativo Percurso: " + itemPercursos.id ,Toast.LENGTH_SHORT).show()
+                            }
+
                         }
                     }
             }

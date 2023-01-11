@@ -39,12 +39,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTitutloPercurso" />
 
     <Button
-        android:id="@+id/buttoeditarpercurso"
+        android:id="@+id/buttonativarpercurso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
-        android:text="Editar Percurso"
+        android:text="Ativar Percurso"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"

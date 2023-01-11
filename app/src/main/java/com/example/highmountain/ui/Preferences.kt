@@ -5,6 +5,7 @@ import android.content.Context
 object Preferences {
     const val PREF_CODE = "pref_code"
     const val role_user = "role_user"
+    const val percursoAtivo = "percursoAtivo"
 }
 
 var Context.PREF_CODE : String?
@@ -42,5 +43,22 @@ var Context.role_user : String?
         }
     }
 
+
+var Context.percursoAtivo : String?
+    get(){
+        val sharedPref = getSharedPreferences(Preferences.percursoAtivo, Context.MODE_PRIVATE) ?:  return null
+        return sharedPref.getString(Preferences.percursoAtivo, "")
+    }
+    set(value){
+        val sharedPref = getSharedPreferences(Preferences.percursoAtivo, Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+            if(value == "apagar"){
+                clear()
+            } else if (value != null) {
+                putString(Preferences.percursoAtivo, value.toString())
+            }
+            commit()
+        }
+    }
 
 

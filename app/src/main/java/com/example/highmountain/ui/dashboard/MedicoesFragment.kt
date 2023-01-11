@@ -39,6 +39,9 @@ class MedicoesFragment : Fragment() {
         getLocation()
 
 
+
+
+
     }
     
     private fun getLocation(){
@@ -58,8 +61,8 @@ class MedicoesFragment : Fragment() {
         val location = fusedLocationProviderClient.lastLocation
         location.addOnSuccessListener {
             if(it != null){
-                var longitude = Math.round(it.longitude)
-                var latitude = Math.round(it.latitude)
+                var longitude =it.longitude
+                var latitude = it.latitude
                 var altitude = Math.round(it.altitude.toFloat() - 56F)
               datagps.setText("Longitude:" + longitude.toString()+"Latitude:  "+ latitude.toString()+ "Altura: " + altitude.toString())
             }
