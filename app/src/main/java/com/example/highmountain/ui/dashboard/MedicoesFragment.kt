@@ -3,47 +3,41 @@ package com.example.highmountain.ui.dashboard
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import  android.view.LayoutInflater
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MultiAutoCompleteTextView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
-import com.example.highmountain.databinding.FragmentMedicoesBinding
+import com.example.highmountain.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
-
 class MedicoesFragment : Fragment() {
 
-    private var _binding : FragmentMedicoesBinding?= null
-    private val binding get() = _binding!!
-    private lateinit var datagps : TextView
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-
+    var latitude = 0.0
+    var longitude = 0.0
+    var altitude = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       _binding =  FragmentMedicoesBinding.inflate(inflater, container, false)
-        return binding.root
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_medicoes, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        datagps = binding.textViewDatagps
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        getLocation()
-
-
-
-
 
     }
-    
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
     private fun getLocation(){
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -58,19 +52,18 @@ class MedicoesFragment : Fragment() {
         }
 
 
+
         val location = fusedLocationProviderClient.lastLocation
         location.addOnSuccessListener {
             if(it != null){
-                var longitude =it.longitude
-                var latitude = it.latitude
-                var altitude = Math.round(it.altitude.toFloat() - 56F)
-              datagps.setText("Longitude:" + longitude.toString()+"Latitude:  "+ latitude.toString()+ "Altura: " + altitude.toString())
+                longitude =it.longitude
+                latitude = it.latitude
+                altitude = it.altitude - 56
             }
         }
     }
 
 
-    companion object {
 
-    }
+
 }

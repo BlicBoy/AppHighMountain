@@ -21,7 +21,7 @@
             app:destination="@id/listPercursoFragment" />
         <action
             android:id="@+id/action_navigation_dashboard_to_medicoesFragment"
-            app:destination="@id/medicoesFragment" />
+            app:destination="@id/listParticipantesFragment" />
     </fragment>
 
     <fragment
@@ -50,10 +50,14 @@
         android:id="@+id/listPercursoFragment"
         android:name="com.example.highmountain.ui.dashboard.ListPercursoFragment"
         android:label="fragment_list_percurso"
-        tools:layout="@layout/fragment_list_percurso" />
+        tools:layout="@layout/fragment_list_percurso" >
+        <action
+            android:id="@+id/action_listPercursoFragment_to_medicoesFragment"
+            app:destination="@id/listParticipantesFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/medicoesFragment"
-        android:name="com.example.highmountain.ui.dashboard.MedicoesFragment"
-        android:label="fragment_medicoes"
-        tools:layout="@layout/fragment_medicoes" />
+        android:id="@+id/listParticipantesFragment"
+        android:name="com.example.highmountain.ui.dashboard.ListParticipantesFragment"
+        android:label="fragment_listparticipantes"
+        tools:layout="@layout/fragment_listparticipantes" />
 </navigation>

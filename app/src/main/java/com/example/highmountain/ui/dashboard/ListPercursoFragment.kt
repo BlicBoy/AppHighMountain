@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -103,6 +104,14 @@ class ListPercursoFragment : Fragment() {
             var itemPercursos = percursosList[position]
 
                 holder.apply {
+
+
+                    if(this@ListPercursoFragment.requireContext().percursoAtivo == itemPercursos.id){
+                        buttonActivatePercursos.setText("Ativado")
+                    }else{
+                        buttonActivatePercursos.setText("Ativar Percurso")
+                    }
+
                     textViewTituloPercurso.text = itemPercursos.Nome
                     textViewDataHoraPercurso.text = "Data de Inicio: " + itemPercursos.DataInicio
                     //background.setBackgroundResource(R.drawable.mountains)
@@ -136,7 +145,9 @@ class ListPercursoFragment : Fragment() {
 
                             buttonActivatePercursos.setOnClickListener{
                                     this@ListPercursoFragment.requireContext().percursoAtivo = itemPercursos.id
-                                    Toast.makeText(requireContext(), "Ativo Percurso: " + itemPercursos.id ,Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(requireContext(), "Ativo Percurso: " + itemPercursos.Nome ,Toast.LENGTH_SHORT).show()
+                                    findNavController().navigate(R.id.action_listPercursoFragment_to_medicoesFragment)
+
                             }
 
                         }
