@@ -6,6 +6,7 @@ import android.os.Bundle
 import  android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MultiAutoCompleteTextView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -57,7 +58,10 @@ class MedicoesFragment : Fragment() {
         val location = fusedLocationProviderClient.lastLocation
         location.addOnSuccessListener {
             if(it != null){
-              datagps.setText("Longitude:" +it.longitude.toString()+"Latitude:  "+it.latitude.toString()+ "Altura: " + it.altitude.toString())
+                var longitude = Math.round(it.longitude)
+                var latitude = Math.round(it.latitude)
+                var altitude = Math.round(it.altitude.toFloat() - 56F)
+              datagps.setText("Longitude:" + longitude.toString()+"Latitude:  "+ latitude.toString()+ "Altura: " + altitude.toString())
             }
         }
     }
