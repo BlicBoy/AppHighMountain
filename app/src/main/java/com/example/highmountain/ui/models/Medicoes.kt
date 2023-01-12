@@ -29,7 +29,6 @@ data class Medicoes
                 "Altura" to Altura,
                 "nivelOxigenio" to nivelOxigenio,
                 "batimentoCardiaco" to batimentoCardiaco
-
             )
 
         }
