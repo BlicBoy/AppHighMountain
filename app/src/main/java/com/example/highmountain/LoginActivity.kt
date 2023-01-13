@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
                 if (documento != null) {
                     this@LoginActivity.role_user = documento.getString("role")
                    if(documento.getString("role") == "Cliente"){
-                       startActivity(Intent(this, ClienteActivity::class.java))
+                       startActivity(Intent(this@LoginActivity, ClienteActivity::class.java))
                    }else{
                        if(documento.getString("role") == "Administrador"){
                            startActivity(Intent(this, MainActivity::class.java))

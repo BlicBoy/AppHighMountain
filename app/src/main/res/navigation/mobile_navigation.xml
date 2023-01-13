@@ -78,4 +78,9 @@
             app:argType="string"
             android:defaultValue='""' />
     </fragment>
+    <fragment
+        android:id="@+id/userPrincipalFragment"
+        android:name="com.example.highmountain.ui.utilizador.UserPrincipalFragment"
+        android:label="fragment_user_principal"
+        tools:layout="@layout/fragment_user_principal" />
 </navigation>

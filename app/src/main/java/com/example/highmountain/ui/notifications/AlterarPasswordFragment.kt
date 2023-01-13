@@ -1,6 +1,5 @@
 package com.example.highmountain.ui.notifications
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentAlterarPasswordBinding
-import com.example.highmountain.ui.utilizador.ClienteActivity
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
