@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
         binding.recyclerViewClientes.itemAnimator = DefaultItemAnimator()
 
 
-        if(newUsersList.size <= 0){
+        if(newUsersList.size < 0){
             Toast.makeText(requireContext(),"Nenhum cliente registrado!", Toast.LENGTH_SHORT).show()
         }
 

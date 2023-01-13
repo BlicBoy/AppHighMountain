@@ -103,7 +103,7 @@ class MedicoesFragment : Fragment() {
 
     private fun validationData(nivelOxigenio : Int, alt : Int) : Boolean{
 
-        if (nivelOxigenio in 98 .. 99 && alt in 0 .. 562){
+        if (nivelOxigenio in 98 .. 100 && alt in 0 .. 562){
             return true
         }else if (nivelOxigenio in 95 .. 97 && alt in 562 .. 2335){
             return true
