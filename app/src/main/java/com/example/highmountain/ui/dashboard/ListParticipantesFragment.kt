@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -47,7 +48,6 @@ class ListParticipantesFragment : Fragment() {
             for (doc in value?.documents!!){
                 if(doc.getString("uIdPercurso") == this@ListParticipantesFragment.requireContext().percursoAtivo){
                     participantesList.add(Participantes.fromDoc(doc))
-                    uIdDocument = doc.id
                 }
             }
 
@@ -90,10 +90,13 @@ class ListParticipantesFragment : Fragment() {
                 textViewNomeParticipante.text = itemParticipante.nomeParticipante
 
                 buttonMedicoes.setOnClickListener {
-
                     val bundle : Bundle = Bundle()
-                    bundle.putString("uIdDocument", uIdDocument)
-                    findNavController().navigate(R.id.action_listPercursoFragment_to_medicoesFragment, bundle)
+                    bundle.putString("uIdUtilizador", itemParticipante.uIdParticipante)
+                    if(bundle != null){
+                        findNavController().navigate(R.id.action_listParticipantesFragment_to_medicoesFragment, bundle)
+                    }else{
+                        Toast.makeText(requireContext(), "Ocurreu um erro", Toast.LENGTH_SHORT).show()
+                    }
 
                 }
             }

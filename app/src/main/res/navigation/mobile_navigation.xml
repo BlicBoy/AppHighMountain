@@ -63,10 +63,19 @@
         <action
             android:id="@+id/action_listParticipantesFragment_to_medicoesFragment"
             app:destination="@id/medicoesFragment" />
+        <argument
+            android:name="uIdUtilizador"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
     <fragment
         android:id="@+id/medicoesFragment"
         android:name="com.example.highmountain.ui.dashboard.MedicoesFragment"
         android:label="fragment_medicoes"
-        tools:layout="@layout/fragment_medicoes" />
+        tools:layout="@layout/fragment_medicoes" >
+        <argument
+            android:name="uIdUtilizador"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
 </navigation>

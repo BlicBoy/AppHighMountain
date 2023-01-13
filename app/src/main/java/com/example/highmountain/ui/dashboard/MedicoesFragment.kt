@@ -35,7 +35,7 @@ class MedicoesFragment : Fragment() {
 
         val bundle = this.arguments
         if (bundle != null) {
-            val documentId = bundle.getString("uIdDocument", "")
+            val documentId = bundle.getString("uIdUtilizador", "")
 
             Toast.makeText(requireContext(), documentId, Toast.LENGTH_SHORT).show()
         }
