@@ -71,28 +71,21 @@ class MedicoesFragment : Fragment() {
 
 
         binding.buttonvalidarmedioes.setOnClickListener {
-
             val oxigenio = binding.editTextPercentagemOxigenio.text
+            if(!oxigenio.isNullOrBlank()){
+                var run = validationData(parseInt(oxigenio.toString()), altitude)
 
-
-
-            var run = validationData(parseInt(oxigenio.toString()), altitude)
-
-            if(run){
-                binding.textViewSeguir.setTextColor(Color.parseColor("#0fa602"))
-                binding.textViewSeguir.text = "Pode Seguir"
-                //Toast.makeText(requireContext(), "Pode Seguir", Toast.LENGTH_SHORT).show()
-
+                if(run){
+                    binding.textViewSeguir.setTextColor(Color.parseColor("#0fa602"))
+                    binding.textViewSeguir.text = "Pode Seguir"
+                }else{
+                    binding.textViewSeguir.setTextColor(Color.parseColor("#a60202"))
+                    binding.textViewSeguir.text = "Não aconselhavel"
+                }
             }else{
-                binding.textViewSeguir.setTextColor(Color.parseColor("#a60202"))
-
-                binding.textViewSeguir.text = "Não aconselhavel"
-                // Toast.makeText(requireContext(), "Não aconselhavel", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Tem de preencher pelo menos o campo do oxigénio", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
     }
 
 
@@ -103,6 +96,9 @@ class MedicoesFragment : Fragment() {
     private fun simulateDataMedicoes(){
          rndsOxig = (78..99).random()
          rndsBati = (70..140).random()
+
+        binding.editTextPercentagemOxigenio.setText(rndsOxig.toString())
+        binding.editTextMedicoesNumBatimentos.setText(rndsBati.toString())
     }
 
     private fun validationData(nivelOxigenio : Int, alt : Int) : Boolean{
