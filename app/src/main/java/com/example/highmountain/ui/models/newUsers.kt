@@ -47,7 +47,12 @@ data class newUsers(
             }
     }
 
+
+
     companion object{
+
+
+
         fun newUserField(name: String, field: String){
             val uid = FirebaseAuth.getInstance().currentUser!!.uid
             val db = Firebase.firestore
@@ -68,6 +73,21 @@ data class newUsers(
                 doc.getString("sexualidade"),
                 doc.getString("role")
                 )
+        }
+
+
+        fun nameUserFromId(callback : (name:String?) ->Unit){
+            val uid = FirebaseAuth.getInstance().currentUser!!.uid
+
+            val db = Firebase.firestore
+            db.collection("newUsers").document(uid)
+                .addSnapshotListener { value, error ->
+                    val user = value?.let {
+                        newUsers.fromDoc(it)
+                    }
+
+                    callback(user?.FirstName.toString())
+                }
         }
     }
 }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,9 +17,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.highmountain.R
 import com.example.highmountain.databinding.ActivitySelecionarPercursoBinding
 import com.example.highmountain.databinding.RowPercursoBinding
+import com.example.highmountain.ui.models.Participantes
 
 
 import com.example.highmountain.ui.models.Percursos
+import com.example.highmountain.ui.models.newUsers
 
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -77,6 +80,7 @@ class SelecionarPercursoActivity : AppCompatActivity() {
             val textViewDataHoraPercurso : TextView = binding.textViewDataHoraPercurso
             val background = binding.cardViewPercursos
             val buttonInfo = binding.buttonmoreinfo
+            val buttonEntrar = binding.buttonativarpercurso
         }
 
         override fun getItemCount(): Int {
@@ -93,10 +97,9 @@ class SelecionarPercursoActivity : AppCompatActivity() {
             holder.apply {
 
 
-
+                buttonEntrar.setText("Inscrever Percurso")
                 textViewTituloPercurso.text = itemPercursos.Nome
                 textViewDataHoraPercurso.text = "Data de Inicio: " + itemPercursos.DataInicio
-                //background.setBackgroundResource(R.drawable.mountains)
 
                 val storage = Firebase.storage
                 val storageRef = storage.reference
@@ -125,8 +128,19 @@ class SelecionarPercursoActivity : AppCompatActivity() {
 
                         }
 
+                        buttonEntrar.setOnClickListener {
 
-
+                                newUsers.nameUserFromId { name ->
+                                    Participantes(auth.currentUser?.uid.toString(),itemPercursos.id,name,auth.currentUser?.email).insertParticipation {
+                                        error ->
+                                        error?.let {
+                                            Toast.makeText(this@SelecionarPercursoActivity, "Error", Toast.LENGTH_SHORT).show()
+                                        }?: kotlin.run {
+                                            Toast.makeText(this@SelecionarPercursoActivity, "Inscreveu-se no percurso!", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                }
+                        }
                     }
                 }
             }
