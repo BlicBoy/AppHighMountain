@@ -47,7 +47,7 @@ class MedicoesFragment : Fragment() {
 
         val bundle = this.arguments
         if (bundle != null) {
-            val documentId = bundle.getString("uIdUtilizador", "")
+            val useruId = bundle.getString("uIdUtilizador", "")
         }
 
 

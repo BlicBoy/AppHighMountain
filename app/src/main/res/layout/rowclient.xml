@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linha"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -21,9 +22,12 @@
         android:id="@+id/imageViewClienteRow"
         android:layout_width="101dp"
         android:layout_height="103dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_person_24"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textViewClienteEmailRow"
@@ -35,4 +39,5 @@
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toEndOf="@+id/imageViewClienteRow"
         app:layout_constraintTop_toBottomOf="@+id/textViewNomeClienteRow" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

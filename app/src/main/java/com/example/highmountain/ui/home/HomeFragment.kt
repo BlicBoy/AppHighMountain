@@ -1,6 +1,7 @@
 package com.example.highmountain.ui.home
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
@@ -8,21 +9,26 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentHomeBinding
 import com.example.highmountain.databinding.RowclientBinding
 import com.example.highmountain.ui.LoadingDialog
 import com.example.highmountain.ui.models.newUsers
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.android.synthetic.main.rowclient.*
 
 class HomeFragment : Fragment() {
 
@@ -96,6 +102,7 @@ class HomeFragment : Fragment() {
             val textviewNome :TextView = binding.textViewNomeClienteRow
             val textviewEmail : TextView = binding.textViewClienteEmailRow
             val imageViewPhoto : ImageView = binding.imageViewClienteRow
+            val linha : ConstraintLayout = binding.linha
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -118,13 +125,40 @@ class HomeFragment : Fragment() {
                 val ONE_MEGABYTE: Long = 10024*1024
                 islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
                     val inputStream = it.inputStream()
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
-                    imageViewPhoto.setImageBitmap(bitmap)
+                    val photo = BitmapFactory.decodeStream(inputStream)
+                    imageViewPhoto.setImageBitmap(photo)
+
+                    linha.setOnClickListener {
+                        itemCliente.numeroTelemovel?.let { phoneNumber ->
+                            itemCliente.dataNascimento?.let { dateBorn ->
+                                viewDetailsCliente(photo,itemCliente.FirstName + " "+ itemCliente.LastName,
+                                    phoneNumber, dateBorn
+                                )
+                            }
+                        }
+                    }
                 }
                         textviewNome.text = itemCliente.FirstName
                         textviewEmail.text = itemCliente.role
+
+
+
                     }
                 }
+
+         private fun viewDetailsCliente(photoClient: Bitmap,nameClient : String, phoneNumber : String, dateBorn : String){
+            val dialog = BottomSheetDialog(requireContext())
+            dialog.setContentView(R.layout.details_cliente)
+             dialog.findViewById<ImageView>(R.id.imageViewPhotoCliente)?.setImageBitmap(photoClient)
+
+
+             dialog.findViewById<TextView>(R.id.textViewNomeDetails)?.text = nameClient
+             dialog.findViewById<TextView>(R.id.textViewNumeroTelemovelDetails)?.text = phoneNumber
+             dialog.findViewById<TextView>(R.id.textViewDataNascimentoDetails)?.text = dateBorn
+
+
+             dialog.show()
+        }
 
         override fun getItemCount(): Int {
             return newUsersList.size
