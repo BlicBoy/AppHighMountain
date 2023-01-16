@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.utilizador.InfoClienteActivity">
 
+
     <ImageView
         android:id="@+id/imageViewInfoCliente"
         android:layout_width="334dp"
@@ -14,19 +15,19 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_foreground"
-        tools:src="@tools:sample/avatars"/>
-
+        tools:src="@tools:sample/avatars"
+        tools:srcCompat="@drawable/ic_baseline_person_24" />
 
     <EditText
         android:id="@+id/editTextFirstNameInfoCliente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="FirstName"
@@ -36,25 +37,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewInfoCliente" />
 
-
-    <Spinner
-        android:id="@+id/spinnersex"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDataNascimentoInfoCliente" />
-
     <EditText
         android:id="@+id/editTextPhoneInfoCliente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Phone Number"
@@ -64,12 +52,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLastNameInfoCliente" />
 
+    <Spinner
+        android:id="@+id/spinnertiposangue"
+        android:layout_width="172dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/spinnersex"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDataNascimentoInfoCliente" />
+
+    <Spinner
+        android:id="@+id/spinnersex"
+        android:layout_width="172dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDataNascimentoInfoCliente" />
+
     <EditText
         android:id="@+id/editTextLastNameInfoCliente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="LastName"
@@ -79,22 +87,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextFirstNameInfoCliente" />
 
-    <Button
-        android:id="@+id/buttonSaveInfoCliente"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextDoencasInfoCliente"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Guardar"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Doenças"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnersex" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnertiposangue" />
+
+
+    <EditText
+        android:id="@+id/editTextalergiasInfoCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Alergias"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDoencasInfoCliente" />
 
     <EditText
         android:id="@+id/editTextDataNascimentoInfoCliente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Data de Nascimento"
@@ -103,5 +132,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhoneInfoCliente" />
+
+    <Button
+        android:id="@+id/buttonSaveInfoCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextalergiasInfoCliente" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

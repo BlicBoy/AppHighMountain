@@ -37,15 +37,53 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewPerfilCliente" />
 
 
-    <Spinner
-        android:id="@+id/spinnersexperfil"
+    <EditText
+        android:id="@+id/editTextAlergiasProfile"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Alergias"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDoencasProfile" />
+
+    <EditText
+        android:id="@+id/editTextDoencasProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Doenças"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnertiposangueperfil" />
+
+    <Spinner
+        android:id="@+id/spinnertiposangueperfil"
+        android:layout_width="185dp"
+        android:layout_height="34dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/spinnersexperfil"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDataNascimentoPerfilCliente" />
+
+    <Spinner
+        android:id="@+id/spinnersexperfil"
+        android:layout_width="185dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDataNascimentoPerfilCliente" />
 
@@ -83,11 +121,11 @@
         android:id="@+id/buttonSavePerfilCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Guardar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnersexperfil" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAlergiasProfile" />
 
     <EditText
         android:id="@+id/editTextDataNascimentoPerfilCliente"

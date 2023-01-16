@@ -132,7 +132,7 @@ class HomeFragment : Fragment() {
                         itemCliente.numeroTelemovel?.let { phoneNumber ->
                             itemCliente.dataNascimento?.let { dateBorn ->
                                 viewDetailsCliente(photo,itemCliente.FirstName + " "+ itemCliente.LastName,
-                                    phoneNumber, dateBorn
+                                    phoneNumber, dateBorn, itemCliente.alergias.toString(), itemCliente.tipodeSangue.toString(), itemCliente.doencas.toString()
                                 )
                             }
                         }
@@ -146,7 +146,7 @@ class HomeFragment : Fragment() {
                     }
                 }
 
-         private fun viewDetailsCliente(photoClient: Bitmap,nameClient : String, phoneNumber : String, dateBorn : String){
+         private fun viewDetailsCliente(photoClient: Bitmap,nameClient : String, phoneNumber : String, dateBorn : String, alergias : String, tipodeSangue : String, doencas : String){
             val dialog = BottomSheetDialog(requireContext())
             dialog.setContentView(R.layout.details_cliente)
              dialog.findViewById<ImageView>(R.id.imageViewPhotoCliente)?.setImageBitmap(photoClient)
@@ -155,6 +155,9 @@ class HomeFragment : Fragment() {
              dialog.findViewById<TextView>(R.id.textViewNomeDetails)?.text = nameClient
              dialog.findViewById<TextView>(R.id.textViewNumeroTelemovelDetails)?.text = phoneNumber
              dialog.findViewById<TextView>(R.id.textViewDataNascimentoDetails)?.text = dateBorn
+             dialog.findViewById<TextView>(R.id.textViewDetailsAlergias)?.text = alergias
+             dialog.findViewById<TextView>(R.id.textViewDetailsDoencas)?.text = doencas
+             dialog.findViewById<TextView>(R.id.textViewtiposanguedetails)?.text = tipodeSangue
 
 
              dialog.show()

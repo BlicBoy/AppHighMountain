@@ -16,6 +16,10 @@ data class newUsers(
     var dataNascimento : String?,
     var sexualidade : String?,
     var role : String?,
+    var tipodeSangue : String?,
+    var doencas : String?,
+    var alergias: String?,
+
 )
 {
 
@@ -29,7 +33,10 @@ data class newUsers(
             "photoURL" to photoURL,
             "dataNascimento" to dataNascimento,
             "sexualidade" to sexualidade,
-            "role" to role
+            "role" to role,
+            "tipodeSangue" to tipodeSangue,
+            "doencas" to doencas,
+            "alergias" to alergias
         )
     }
 
@@ -71,7 +78,10 @@ data class newUsers(
                 doc.getString("photoURL"),
                 doc.getString("dataNascimento"),
                 doc.getString("sexualidade"),
-                doc.getString("role")
+                doc.getString("role"),
+                doc.getString("tipodeSangue"),
+                doc.getString("doencas"),
+                doc.getString("alergias")
                 )
         }
 

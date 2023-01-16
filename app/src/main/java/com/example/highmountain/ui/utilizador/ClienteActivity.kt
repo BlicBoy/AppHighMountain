@@ -30,11 +30,6 @@ class ClienteActivity : AppCompatActivity() {
             deletePreferences()
             auth.signOut()
             startActivity(Intent(this@ClienteActivity, SplashActivity::class.java))
-
-        }
-        binding.buttonSaude.setOnClickListener(){
-            startActivity(Intent(this@ClienteActivity, SaudeActivity::class.java))
-
         }
         binding.buttonEditarInformacoes.setOnClickListener {
             startActivity(Intent(this@ClienteActivity, ClientePerfilActivity::class.java))

@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.highmountain.ui.utilizador.ClienteActivity
+import com.example.highmountain.ui.utilizador.InfoClienteActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -35,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) {
                         if(it.isSuccessful){
                             Log.d(TAG,"Registo Feito com sucesso")
-                            startActivity(Intent(this@RegisterActivity,ClienteActivity::class.java))
+                            startActivity(Intent(this@RegisterActivity,InfoClienteActivity::class.java))
                         }else{
                             Log.d(TAG,"Erro!")
                             Toast.makeText(this,

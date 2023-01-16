@@ -23,6 +23,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
 import kotlinx.android.synthetic.main.activity_info_cliente.*
+import kotlinx.android.synthetic.main.activity_info_cliente.spinnertiposangue
 import java.io.File
 import java.io.IOException
 
@@ -45,6 +46,13 @@ class InfoClienteActivity : AppCompatActivity() {
 
         spinnersex.adapter = arrayAdapter
 
+
+
+        val arraySpinnerSaude = listOf<String>("A+","A-","B+","B-","AB+-","AB-","O+","O-")
+        val arrayAdapterSaude = ArrayAdapter(this,androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arraySpinnerSaude)
+        spinnertiposangue.adapter = arrayAdapterSaude
+
+
         binding.imageViewInfoCliente.setOnClickListener{
             dispatchTakePictureIntent()
         }
@@ -60,16 +68,20 @@ class InfoClienteActivity : AppCompatActivity() {
                        it,
                         binding.editTextDataNascimentoInfoCliente.text.toString(),
                         spinnersex.selectedItem.toString(),
-                        "Cliente"
+                        "Cliente",
+                        spinnertiposangue.selectedItem.toString(),
+                        binding.editTextDoencasInfoCliente.text.toString(),
+                        binding.editTextalergiasInfoCliente.text.toString()
                     ).sendNewUser { error ->
                         error?.let {
                             Toast.makeText(this,"Ocurreu algum erro!",Toast.LENGTH_LONG).show()
                         }?: kotlin.run {
                             Toast.makeText(this,"Guardado com sucesso!",Toast.LENGTH_LONG).show()
-                            startActivity(Intent(this,InfoClienteSaudeActivity::class.java))
+                            startActivity(Intent(this,ClienteActivity::class.java))
                         }
                     }
-                }?: kotlin.run { Toast.makeText(this,"Error",Toast.LENGTH_LONG).show()
+                }?: kotlin.run {
+                     Toast.makeText(this,"Error",Toast.LENGTH_LONG).show()
                 }
             }
         }

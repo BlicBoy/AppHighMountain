@@ -10,6 +10,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
 import com.example.highmountain.R
@@ -22,6 +23,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
 import kotlinx.android.synthetic.main.activity_cliente_perfil.*
+import kotlinx.android.synthetic.main.activity_info_cliente.*
 import java.io.File
 import java.io.IOException
 
@@ -46,6 +48,11 @@ class ClientePerfilActivity : AppCompatActivity() {
         val arrayAdapter = ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arraySpinner)
         spinnersexperfil.adapter = arrayAdapter
 
+
+        val arraySpinnerSaude = listOf<String>("A+","A-","B+","B-","AB+-","AB-","O+","O-")
+        val arrayAdapterSaude = ArrayAdapter(this,androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arraySpinnerSaude)
+        spinnertiposangueperfil.adapter = arrayAdapterSaude
+
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val db = Firebase.firestore
         db.collection("newUsers").document(uid)
@@ -59,10 +66,22 @@ class ClientePerfilActivity : AppCompatActivity() {
                 binding.editTextLastNamePerfilCliente.setText(user?.LastName)
                 binding.editTextPhonePerfilCliente.setText(user?.numeroTelemovel)
                 binding.editTextDataNascimentoPerfilCliente.setText(user?.dataNascimento)
+                binding.editTextAlergiasProfile.setText(user?.alergias)
+                binding.editTextDoencasProfile.setText(user?.doencas)
+
 
                 var position : String = user?.sexualidade.toString()
                 var spinnerPosition = arrayAdapter.getPosition(position)
                 spinnersexperfil.setSelection(spinnerPosition)
+
+
+
+
+                var positionSangue: String = user?.tipodeSangue.toString()
+                var spinnerPositonSangue = arrayAdapterSaude.getPosition(positionSangue)
+                spinnertiposangueperfil.setSelection(spinnerPositonSangue)
+
+
 
                 user?.photoURL?.let {
                     val storage = Firebase.storage
@@ -89,10 +108,15 @@ class ClientePerfilActivity : AppCompatActivity() {
 
         binding.buttonSavePerfilCliente.setOnClickListener {
             newUsers.newUserField(spinnersexperfil.selectedItem.toString(), "sexualidade")
+            newUsers.newUserField(spinnertiposangueperfil.selectedItem.toString(), "tipodeSangue")
+            newUsers.newUserField(binding.editTextDoencasProfile.text.toString(), "doencas")
+            newUsers.newUserField(binding.editTextAlergiasProfile.text.toString(), "alergias")
             newUsers.newUserField(binding.editTextFirstNamePerfilCliente.text.toString(), "FirstName")
             newUsers.newUserField(binding.editTextLastNamePerfilCliente.text.toString(), "LastName")
             newUsers.newUserField(binding.editTextDataNascimentoPerfilCliente.text.toString(), "dataNascimento")
             newUsers.newUserField(binding.editTextPhonePerfilCliente.text.toString(),"numeroTelemovel")
+
+            Toast.makeText(this, "Dados Alterados com sucesso!", Toast.LENGTH_SHORT).show()
         }
 
     }
