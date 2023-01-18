@@ -62,7 +62,7 @@ class ViewDataActivity : AppCompatActivity() {
         binding.recyclerViewParticipacoes.adapter = adapter
         binding.recyclerViewParticipacoes.itemAnimator = DefaultItemAnimator()
 
-        if(PercursoParticipateList.size <= 0){
+        if(PercursoParticipateList.size < 0){
             Toast.makeText(this,  "Nenhuma Participação", Toast.LENGTH_SHORT).show()
         }
 
