@@ -9,14 +9,16 @@ import kotlin.collections.HashMap
 data class Participantes(
     var uIdParticipante: String?, //ser random
     var uIdPercurso: String?,
+    var nomePercurso : String?,
     var nomeParticipante: String?,
-    var email: String?,
+    var email: String?
 ) {
 
     fun toHasMap() : HashMap<String, Any?>{
         return hashMapOf(
             "uIdParticipante" to uIdParticipante,
             "uIdPercurso" to uIdPercurso,
+            "nomePercurso" to nomePercurso,
             "nomeParticipante" to nomeParticipante,
             "email" to email
         )
@@ -42,6 +44,7 @@ data class Participantes(
             return Participantes(
                 doc.getString("uIdParticipante"),
                 doc.getString("uIdPercurso"),
+                doc.getString("nomePercurso"),
                 doc.getString("nomeParticipante"),
                 doc.getString("email")
             )

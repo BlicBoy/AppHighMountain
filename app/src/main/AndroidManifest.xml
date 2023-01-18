@@ -27,12 +27,19 @@
         android:theme="@style/Theme.HighMountain"
         tools:targetApi="31">
         <activity
+            android:name=".ui.utilizador.ViewDataActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.utilizador.ClienteActivity"
             android:exported="false"
             android:label="@string/title_activity_cliente"
-            android:theme="@style/Theme.HighMountain.NoActionBar"
-            android:screenOrientation="portrait">
-
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HighMountain.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

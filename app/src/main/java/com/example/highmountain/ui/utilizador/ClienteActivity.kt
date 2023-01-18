@@ -1,12 +1,15 @@
 package com.example.highmountain.ui.utilizador
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.highmountain.R
 import com.example.highmountain.SplashActivity
 import com.example.highmountain.databinding.ActivityClienteBinding
 import com.example.highmountain.ui.PREF_CODE
+import com.example.highmountain.ui.percursoAtivo
 import com.example.highmountain.ui.role_user
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -42,6 +45,10 @@ class ClienteActivity : AppCompatActivity() {
         binding.buttonConsultaDados.setOnClickListener {
             startActivity(Intent(this@ClienteActivity, SelecionarPercursoActivity::class.java))
 
+        }
+
+        binding.buttonviewmedicoes.setOnClickListener {
+            startActivity(Intent(this@ClienteActivity, ViewDataActivity::class.java))
         }
 
     }

@@ -1,5 +1,6 @@
 package com.example.highmountain.ui.utilizador
 
+
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -109,7 +111,12 @@ class SelecionarPercursoActivity : AppCompatActivity() {
                 islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
                     val inputStream = it.inputStream()
                     val bitmap = BitmapFactory.decodeStream(inputStream)
-                    background.setBackgroundDrawable(BitmapDrawable(this@SelecionarPercursoActivity.resources, bitmap))
+                    background.setBackgroundDrawable(
+                        BitmapDrawable(
+                            this@SelecionarPercursoActivity.resources,
+                            bitmap
+                        )
+                    )
 
                     islandRef = storageRef.child("newUserPhotos/${itemPercursos.photoCriador}")
                     islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
@@ -130,17 +137,39 @@ class SelecionarPercursoActivity : AppCompatActivity() {
 
                         buttonEntrar.setOnClickListener {
 
-                                newUsers.nameUserFromId { name ->
-                                    Participantes(auth.currentUser?.uid.toString(),itemPercursos.id,name,auth.currentUser?.email).insertParticipation {
-                                        error ->
-                                        error?.let {
-                                            Toast.makeText(this@SelecionarPercursoActivity, "Error", Toast.LENGTH_SHORT).show()
-                                        }?: kotlin.run {
-                                            Toast.makeText(this@SelecionarPercursoActivity, "Inscreveu-se no percurso!", Toast.LENGTH_SHORT).show()
-                                        }
+
+
+                            newUsers.nameUserFromId { name ->
+                                Participantes(
+                                    auth.currentUser?.uid.toString(),
+                                    itemPercursos.id,
+                                    itemPercursos.Nome,
+                                    name,
+                                    auth.currentUser?.email
+                                ).insertParticipation { error ->
+                                    error?.let {
+                                        Toast.makeText(
+                                            this@SelecionarPercursoActivity,
+                                            "Error",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    } ?: kotlin.run {
+                                        Toast.makeText(
+                                            this@SelecionarPercursoActivity,
+                                            "Inscreveu-se no percurso!",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                 }
+                            }
+
+
+
+
                         }
+
+
+
                     }
                 }
             }
@@ -167,5 +196,8 @@ class SelecionarPercursoActivity : AppCompatActivity() {
             dialog.show()
         }
 
+
+
+        }
+
     }
-}
