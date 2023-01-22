@@ -16,6 +16,7 @@ import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentListparticipantesBinding
 import com.example.highmountain.databinding.RowparticipantesBinding
 import com.example.highmountain.ui.models.Participantes
+import com.example.highmountain.ui.participanteAtivo
 import com.example.highmountain.ui.percursoAtivo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -89,13 +90,9 @@ class ListParticipantesFragment : Fragment() {
                 textViewNomeParticipante.text = itemParticipante.nomeParticipante
 
                 buttonMedicoes.setOnClickListener {
-                    var bundle = Bundle()
-                    bundle.putString("uIdUtilizador", itemParticipante.uIdParticipante)
-                    if(bundle != null){
-                        findNavController().navigate(R.id.action_listParticipantesFragment_to_medicoesFragment, bundle)
-                    }else{
-                        Toast.makeText(requireContext(), "Ocurreu um erro", Toast.LENGTH_SHORT).show()
-                    }
+
+                    requireContext().participanteAtivo = itemParticipante.uIdParticipante.toString()
+                    findNavController().navigate(R.id.action_listParticipantesFragment_to_medicoesFragment)
 
                 }
             }

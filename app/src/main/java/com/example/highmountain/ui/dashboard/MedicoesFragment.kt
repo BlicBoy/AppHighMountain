@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentMedicoesBinding
 import com.example.highmountain.ui.models.Medicoes
+import com.example.highmountain.ui.participanteAtivo
 import com.example.highmountain.ui.percursoAtivo
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -36,7 +37,6 @@ class MedicoesFragment : Fragment() {
     private  var rndsOxig = 0
     private var rndsBati = 0
 
-     val bundle = this.arguments
 
 
 
@@ -57,7 +57,6 @@ class MedicoesFragment : Fragment() {
 
 
 
-        Toast.makeText(requireContext(),  bundle?.get("uIdUtilizador").toString(), Toast.LENGTH_SHORT).show()
 
 
         binding.buttonSimular.setOnClickListener {
@@ -96,8 +95,7 @@ class MedicoesFragment : Fragment() {
 
 
                     //save data online
-                    Medicoes(UUID.randomUUID().toString(),
-                        bundle?.get("uIdUtilizador") as String?, requireContext().percursoAtivo, latitude.toString(),longitude.toString(),altitude.toString(),oxigenio.toString(),card.toString(),
+                    Medicoes(UUID.randomUUID().toString(), requireContext().participanteAtivo, requireContext().percursoAtivo, latitude.toString(),longitude.toString(),altitude.toString(),oxigenio.toString(),card.toString(),
                         LocalDateTime.now().toString()).sendNewMedicoes {
                             error ->
                         if(error == null){
