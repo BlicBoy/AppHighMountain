@@ -27,7 +27,6 @@ class ListParticipantesFragment : Fragment() {
     private var _binding : FragmentListparticipantesBinding?= null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
-    private var uIdDocument = ""
 
     var participantesList = arrayListOf<Participantes>()
     val adapter = ParticipantesAdapter()
@@ -90,7 +89,7 @@ class ListParticipantesFragment : Fragment() {
                 textViewNomeParticipante.text = itemParticipante.nomeParticipante
 
                 buttonMedicoes.setOnClickListener {
-                    val bundle : Bundle = Bundle()
+                    var bundle = Bundle()
                     bundle.putString("uIdUtilizador", itemParticipante.uIdParticipante)
                     if(bundle != null){
                         findNavController().navigate(R.id.action_listParticipantesFragment_to_medicoesFragment, bundle)

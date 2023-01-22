@@ -3,18 +3,24 @@ package com.example.highmountain.ui.dashboard
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.highmountain.R
 import com.example.highmountain.databinding.FragmentMedicoesBinding
+import com.example.highmountain.ui.models.Medicoes
+import com.example.highmountain.ui.percursoAtivo
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.lang.Integer.parseInt
+import java.time.LocalDateTime
+import java.util.*
 import kotlin.math.roundToInt
 
 class MedicoesFragment : Fragment() {
@@ -30,6 +36,9 @@ class MedicoesFragment : Fragment() {
     private  var rndsOxig = 0
     private var rndsBati = 0
 
+     val bundle = this.arguments
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,15 +49,15 @@ class MedicoesFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         getLocation()
 
-        val bundle = this.arguments
-        if (bundle != null) {
-            val useruId = bundle.getString("uIdUtilizador", "")
-        }
+
+
+        Toast.makeText(requireContext(),  bundle?.get("uIdUtilizador").toString(), Toast.LENGTH_SHORT).show()
 
 
         binding.buttonSimular.setOnClickListener {
@@ -59,19 +68,21 @@ class MedicoesFragment : Fragment() {
             if(run){
                 binding.textViewSeguir.setTextColor(Color.parseColor("#0fa602"))
                 binding.textViewSeguir.text = "Pode Seguir"
-                //Toast.makeText(requireContext(), "Pode Seguir", Toast.LENGTH_SHORT).show()
+
 
             }else{
                 binding.textViewSeguir.setTextColor(Color.parseColor("#a60202"))
-
                 binding.textViewSeguir.text = "Não aconselhavel"
-               // Toast.makeText(requireContext(), "Não aconselhavel", Toast.LENGTH_SHORT).show()
             }
+
+
+
         }
 
 
         binding.buttonvalidarmedioes.setOnClickListener {
             val oxigenio = binding.editTextPercentagemOxigenio.text
+            val card = binding.editTextMedicoesNumBatimentos.text
             if(!oxigenio.isNullOrBlank()){
                 var run = validationData(parseInt(oxigenio.toString()), altitude)
 
@@ -82,6 +93,23 @@ class MedicoesFragment : Fragment() {
                     binding.textViewSeguir.setTextColor(Color.parseColor("#a60202"))
                     binding.textViewSeguir.text = "Não aconselhavel"
                 }
+
+
+                    //save data online
+                    Medicoes(UUID.randomUUID().toString(),
+                        bundle?.get("uIdUtilizador") as String?, requireContext().percursoAtivo, latitude.toString(),longitude.toString(),altitude.toString(),oxigenio.toString(),card.toString(),
+                        LocalDateTime.now().toString()).sendNewMedicoes {
+                            error ->
+                        if(error == null){
+                            Toast.makeText(requireContext(), "Sucesso", Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(requireContext(), error.toString() , Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+
+
+
             }else{
                 Toast.makeText(requireContext(), "Tem de preencher pelo menos o campo do oxigénio", Toast.LENGTH_SHORT).show()
             }

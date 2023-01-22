@@ -72,15 +72,5 @@
         android:id="@+id/medicoesFragment"
         android:name="com.example.highmountain.ui.dashboard.MedicoesFragment"
         android:label="fragment_medicoes"
-        tools:layout="@layout/fragment_medicoes" >
-        <argument
-            android:name="uIdUtilizador"
-            app:argType="string"
-            android:defaultValue='""' />
-    </fragment>
-    <fragment
-        android:id="@+id/userPrincipalFragment"
-        android:name="com.example.highmountain.ui.utilizador.UserPrincipalFragment"
-        android:label="fragment_user_principal"
-        tools:layout="@layout/fragment_user_principal" />
+        tools:layout="@layout/fragment_medicoes" />
 </navigation>
