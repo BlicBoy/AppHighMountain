@@ -53,13 +53,14 @@ class ListParticipantesFragment : Fragment() {
 
             adapter.notifyDataSetChanged()
         }
-
+        
         binding.recyclerViewParticipantes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewParticipantes.adapter = adapter
         binding.recyclerViewParticipantes.itemAnimator = DefaultItemAnimator()
 
         binding.buttonTerminarPercurso.setOnClickListener {
-            //fazer terminar percurso (apenas o pode fazer com internet...fazer verificação)
+            requireContext().percursoAtivo = "apagar"
+            findNavController().popBackStack()
         }
 
     }
