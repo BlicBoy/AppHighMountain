@@ -54,21 +54,22 @@ data class Medicoes
     }
 
 
-
         //Pegar Dados do Firebase
-        // companion object{
-        //     fun fromDocMedicoes(doc : DocumentSnapshot) : Medicoes{
-        //         return Medicoes(
-        //             doc.getString("uIdMedicoes"),
-        //             doc.getString("Latitude"),
-        //             doc.getString("Longitude"),
-        //             doc.getString("Altura"),
-        //             doc.getString("nivelOxigenio"),
-        //             doc.getString("batimentoCadiaco"),
-        //             doc.getString("dataMedicao")
-        //         )
-        //     }
-        // }
+         companion object{
+             fun fromDocMedicoes(doc : DocumentSnapshot) : Medicoes{
+                 return Medicoes(
+                     doc.getString("uIdMedicoes"),
+                     doc.getString("uIdPartipante"),
+                     doc.getString("uIdPercurso"),
+                     doc.getString("Latitude"),
+                     doc.getString("Longitude"),
+                     doc.getString("Altura"),
+                     doc.getString("nivelOxigenio"),
+                     doc.getString("batimentoCadiaco"),
+                     doc.getString("dataMedicao")
+                 )
+             }
+         }
 
     }
 

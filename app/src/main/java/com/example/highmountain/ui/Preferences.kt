@@ -7,6 +7,7 @@ object Preferences {
     const val role_user = "role_user"
     const val percursoAtivo = "percursoAtivo"
     const val participanteAtivo = "participanteAtivo"
+    const val percursoMostraMedicoes  = "percursoMostraMedicoes"
 }
 
 var Context.PREF_CODE : String?
@@ -81,5 +82,20 @@ var Context.participanteAtivo : String?
         }
     }
 
-
+var Context.percursoMostraMedicoes : String?
+    get(){
+        val sharedPref = getSharedPreferences(Preferences.percursoMostraMedicoes, Context.MODE_PRIVATE) ?:  return null
+        return sharedPref.getString(Preferences.percursoMostraMedicoes, "")
+    }
+    set(value){
+        val sharedPref = getSharedPreferences(Preferences.percursoMostraMedicoes, Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+            if(value == "apagar"){
+                clear()
+            } else if (value != null) {
+                putString(Preferences.percursoMostraMedicoes, value.toString())
+            }
+            commit()
+        }
+    }
 

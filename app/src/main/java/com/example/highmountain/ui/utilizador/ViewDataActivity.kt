@@ -86,6 +86,12 @@ class ViewDataActivity : AppCompatActivity() {
 
             holder.apply {
                 NamePercursi.text = itemPercursos.nomePercurso
+
+
+                buttonMore.setOnClickListener {
+
+
+                }
             }
 
         }
