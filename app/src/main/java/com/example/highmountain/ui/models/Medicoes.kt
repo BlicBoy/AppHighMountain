@@ -65,7 +65,7 @@ data class Medicoes
                      doc.getString("Longitude"),
                      doc.getString("Altura"),
                      doc.getString("nivelOxigenio"),
-                     doc.getString("batimentoCadiaco"),
+                     doc.getString("batimentoCardiaco"),
                      doc.getString("dataMedicao")
                  )
              }

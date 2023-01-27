@@ -1,5 +1,6 @@
 package com.example.highmountain.ui.utilizador
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import com.example.highmountain.ui.home.HomeFragment
 import com.example.highmountain.ui.models.Participantes
 import com.example.highmountain.ui.models.Percursos
 import com.example.highmountain.ui.percursoAtivo
+import com.example.highmountain.ui.percursoMostraMedicoes
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -89,7 +91,8 @@ class ViewDataActivity : AppCompatActivity() {
 
 
                 buttonMore.setOnClickListener {
-
+                    this@ViewDataActivity.percursoMostraMedicoes = itemPercursos.uIdPercurso
+                    startActivity(Intent(this@ViewDataActivity, mostramedicoesActivity::class.java))
 
                 }
             }

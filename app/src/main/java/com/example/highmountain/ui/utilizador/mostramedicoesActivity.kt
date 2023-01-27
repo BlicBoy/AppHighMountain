@@ -2,8 +2,12 @@ package com.example.highmountain.ui.utilizador
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.highmountain.R
 import com.example.highmountain.databinding.ActivityMostramedicoesBinding
@@ -43,28 +47,42 @@ class mostramedicoesActivity : AppCompatActivity() {
                 medicoesList.clear()
                 for(doc in value?.documents!!){
                     if(doc.getString("uIdPartipante") == auth.currentUser?.uid.toString() && doc.getString("uIdPercurso") == this@mostramedicoesActivity.percursoMostraMedicoes){
-                        
+                        medicoesList.add(Medicoes.fromDocMedicoes(doc))
                     }
                 }
-
+                adapter.notifyDataSetChanged()
             }
+
+            binding.recyclerMedicoes.layoutManager = LinearLayoutManager(this@mostramedicoesActivity,LinearLayoutManager.VERTICAL,false)
+            binding.recyclerMedicoes.adapter = adapter
+            binding.recyclerMedicoes.itemAnimator = DefaultItemAnimator()
     }
 
     inner class MedicoesClienteAdapter : RecyclerView.Adapter<MedicoesClienteAdapter.ViewHolder>(){
         inner class ViewHolder(binding : RowmedicoesclienteBinding) : RecyclerView.ViewHolder(binding.root) {
             val idPercurso : TextView = binding.textViewIdPercursos
+            val localizacao : TextView = binding.textViewLocalizacao
+            val oxigenio : TextView = binding.textViewoxigenio
+            val pulsacao : TextView = binding.textViewpulsacao
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            TODO("Not yet implemented")
+            return ViewHolder(RowmedicoesclienteBinding.inflate(LayoutInflater.from(parent.context),parent,false))
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            TODO("Not yet implemented")
+            var itemMedicoesCliente = medicoesList[position]
+
+            holder.apply {
+                idPercurso.text = itemMedicoesCliente.uIdPercurso
+                localizacao.text = "Localização: Latitude:"+ itemMedicoesCliente.Latitude +  " Longitude:"+itemMedicoesCliente.Longitude+" Altura:"+ itemMedicoesCliente.Altura
+                oxigenio.text = "Oxigenio: "+itemMedicoesCliente.nivelOxigenio
+                pulsacao.text = "Pulsação: "+itemMedicoesCliente.batimentoCardiaco
+            }
         }
 
         override fun getItemCount(): Int {
-            TODO("Not yet implemented")
+            return medicoesList.size
         }
 
     }

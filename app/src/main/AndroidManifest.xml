@@ -27,7 +27,7 @@
         android:theme="@style/Theme.HighMountain"
         tools:targetApi="31">
         <activity
-            android:name=".mostramedicoesActivity"
+            android:name=".ui.utilizador.mostramedicoesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
