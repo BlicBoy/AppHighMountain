@@ -29,6 +29,7 @@ var Context.PREF_CODE : String?
 
 
 var Context.role_user : String?
+//llll
     get(){
         val sharedPref = getSharedPreferences(Preferences.role_user, Context.MODE_PRIVATE) ?:  return null
         return sharedPref.getString(Preferences.role_user, "")
