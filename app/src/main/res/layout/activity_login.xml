@@ -6,62 +6,97 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="159dp"
         android:layout_height="242dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <EditText
-        android:id="@+id/editTextTextEmailLogin"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textViewRegister"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:text="Não tem conta?"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRegisterLogin"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/btLogin" />
+
+    <Button
+        android:id="@+id/buttonRegisterLogin"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="94dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="112dp"
+        android:color="#66FF0000"
+        android:text="Registe-se"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textColorHighlight="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btLogin" />
+
+    <Button
+        android:id="@+id/btLogin"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:text="Login"
+        android:textAllCaps="false"
+        app:cornerRadius="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPasswordLogin" />
 
     <EditText
         android:id="@+id/editTextTextPasswordLogin"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_bg_text"
+        android:drawableStart="@drawable/ic_lock_24"
+        android:drawablePadding="20dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailLogin" />
 
-    <Button
-        android:id="@+id/btLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/editTextTextEmailLogin"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
-        android:text="Login"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_bg_text"
+        android:drawableStart="@drawable/ic_email_24dp"
+        android:drawablePadding="20dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPasswordLogin" />
-
-    <Button
-        android:id="@+id/buttonRegisterLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

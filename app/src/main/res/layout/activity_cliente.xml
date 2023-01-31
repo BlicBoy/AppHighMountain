@@ -9,10 +9,13 @@
 
     <Button
         android:id="@+id/buttonEditarInformacoes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_marginTop="44dp"
         android:text="Editar Informações"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +23,13 @@
 
     <Button
         android:id="@+id/buttonConsultaDados"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_marginTop="24dp"
         android:text="Percursos"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +41,7 @@
         android:layout_height="193dp"
         android:layout_marginEnd="278dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"></ImageView>
@@ -42,20 +49,26 @@
 
     <Button
         android:id="@+id/buttonLogoutCliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:text="Logout"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonviewmedicoes" />
 
     <Button
         android:id="@+id/button_editpassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:text="Edit Password"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,10 +76,13 @@
 
     <Button
         android:id="@+id/buttonviewmedicoes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:text="Medições"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_editpassword" />

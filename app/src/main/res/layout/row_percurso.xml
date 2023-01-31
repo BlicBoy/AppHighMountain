@@ -40,12 +40,14 @@
 
     <Button
         android:id="@+id/buttonativarpercurso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:text="Ativar Percurso"
-        android:textSize="12sp"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        app:cornerRadius="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toEndOf="@+id/buttonmoreinfo"
@@ -53,12 +55,14 @@
 
     <Button
         android:id="@+id/buttonmoreinfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Mais Informações"
-        android:textSize="12sp"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:cornerRadius="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDataHoraPercurso" />
 
