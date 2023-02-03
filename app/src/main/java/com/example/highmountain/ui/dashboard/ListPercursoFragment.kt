@@ -170,7 +170,7 @@ class ListPercursoFragment : Fragment() {
             photoPercurso.setBackgroundDrawable(BitmapDrawable(context?.resources, imagePercurso))
             nomeAdmin.text = nomeCriador
             dataCriacao.text = "Data de Criação de Percurso: " + DataCriacaoPercurso
-            descricao.text = "Data de Inicio: " + datainicio + "\nHora de Inicio:"+ horaInicio+"\nDescrição:"+descricaoPercurso
+            descricao.text = "Data de Inicio: " + datainicio + "\nHora de Inicio: "+ horaInicio+"\nDescrição: "+descricaoPercurso
             photoAdmin.setImageBitmap(photoPerson)
 
 

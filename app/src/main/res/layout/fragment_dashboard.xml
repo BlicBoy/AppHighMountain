@@ -10,12 +10,15 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="Fazer Medições"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageButtonfazerMedicoes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonfazerMedicoes" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -29,38 +32,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButtonListarPercurso"
-        android:layout_width="164dp"
-        android:layout_height="168dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
-        android:src="@drawable/listicon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <ImageButton
         android:id="@+id/imageButtonfazerMedicoes"
         android:layout_width="164dp"
         android:layout_height="168dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="80dp"
         android:background="@color/white"
-        android:src="@drawable/ic_baseline_monitor_heart_24"
+        android:src="@drawable/outline_monitor_heart_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
+    <ImageButton
+        android:id="@+id/imageButtonListarPercurso"
+        android:layout_width="164dp"
+        android:layout_height="168dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:src="@drawable/listicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="80dp"
         android:text="Listar Percursos"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonListarPercurso" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonfazerMedicoes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

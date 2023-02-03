@@ -7,9 +7,11 @@
 
     <TextView
         android:id="@+id/textViewListParticipante"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="15dp"
+
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,26 +23,24 @@
         android:id="@+id/buttonfazermedicao"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_marginStart="96dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="96dp"
         android:text="Fazer Medição"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:cornerRadius="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewListParticpanteEmail" />
 
     <TextView
         android:id="@+id/textViewListParticpanteEmail"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="12dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewListParticipante" />
 </androidx.constraintlayout.widget.ConstraintLayout>

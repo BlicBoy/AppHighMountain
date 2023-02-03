@@ -10,7 +10,7 @@
        android:id="@+id/textViewCode"
        android:layout_width="0dp"
        android:layout_height="wrap_content"
-       android:layout_marginTop="88dp"
+       android:layout_marginTop="150dp"
        android:text="Codigo de 4 digitos"
        android:textAlignment="center"
        app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
        android:id="@+id/buttonGuardarCode"
        android:layout_width="200dp"
        android:layout_height="60dp"
-       android:layout_marginTop="36dp"
+       android:layout_marginTop="50dp"
        android:text="Guardar"
        android:textAllCaps="false"
        android:textSize="16sp"
@@ -60,4 +60,16 @@
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/buttonGuardarCode" />
+
+   <ImageView
+       android:id="@+id/imageView12"
+       android:layout_width="40dp"
+       android:layout_height="60dp"
+       android:layout_marginStart="10dp"
+       android:layout_marginTop="8dp"
+       android:src="@drawable/ic_baseline_arrow_back_24"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
