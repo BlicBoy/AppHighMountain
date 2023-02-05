@@ -51,6 +51,12 @@ class SelecionarPercursoActivity : AppCompatActivity() {
         binding = ActivitySelecionarPercursoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val imageViewBack: ImageView = findViewById(R.id.imageView13)
+
+        imageViewBack.setOnClickListener {
+            onBackPressed()
+        }
+
         auth = Firebase.auth
 
         val db = Firebase.firestore

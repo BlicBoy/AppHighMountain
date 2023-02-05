@@ -10,6 +10,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
@@ -40,6 +41,12 @@ class ClientePerfilActivity : AppCompatActivity() {
         binding = ActivityClientePerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        val imageViewBack: ImageView = findViewById(R.id.imageView7)
+
+        imageViewBack.setOnClickListener {
+            onBackPressed()
+        }
 
         supportActionBar?.hide()
 

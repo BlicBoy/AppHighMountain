@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.highmountain.ui.utilizador.ClienteActivity
@@ -21,6 +22,12 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         supportActionBar?.hide()
+
+        val imageViewBack: ImageView = findViewById(R.id.imageView9)
+
+        imageViewBack.setOnClickListener {
+            onBackPressed()
+        }
 
         val email = findViewById<TextView>(R.id.editTextTextEmailAddressClient).text
         val password = findViewById<TextView>(R.id.editTextTextPasswordCliente).text

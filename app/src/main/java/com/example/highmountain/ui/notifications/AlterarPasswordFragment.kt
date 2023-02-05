@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.highmountain.R
@@ -23,9 +24,6 @@ class AlterarPasswordFragment : Fragment() {
     private var _binding: FragmentAlterarPasswordBinding? = null
     private val binding get() = _binding!!
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +37,9 @@ class AlterarPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.imageView10.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         auth = Firebase.auth
 

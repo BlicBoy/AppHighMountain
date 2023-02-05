@@ -2,6 +2,7 @@ package com.example.highmountain.ui.utilizador
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.highmountain.R
@@ -28,6 +29,11 @@ class EditPasswordActivity : AppCompatActivity() {
         binding = ActivityEditPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val imageViewBack: ImageView = findViewById(R.id.imageView15)
+
+        imageViewBack.setOnClickListener {
+            onBackPressed()
+        }
 
         auth = Firebase.auth
 

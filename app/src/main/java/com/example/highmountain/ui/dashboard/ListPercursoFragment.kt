@@ -68,6 +68,10 @@ class ListPercursoFragment : Fragment() {
         binding.recyclerViewPercursos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewPercursos.adapter = adapter
         binding.recyclerViewPercursos.itemAnimator = DefaultItemAnimator()
+
+        binding.imageView14.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {

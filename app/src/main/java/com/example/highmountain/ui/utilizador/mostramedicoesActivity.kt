@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -37,6 +38,12 @@ class mostramedicoesActivity : AppCompatActivity() {
         binding = ActivityMostramedicoesBinding.inflate(layoutInflater)
         supportActionBar?.hide()
         setContentView(binding.root)
+
+        val imageViewBack: ImageView = findViewById(R.id.imageView17)
+
+        imageViewBack.setOnClickListener {
+            onBackPressed()
+        }
 
 
         auth = Firebase.auth

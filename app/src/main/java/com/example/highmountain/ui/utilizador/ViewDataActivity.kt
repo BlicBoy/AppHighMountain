@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -43,6 +44,12 @@ class ViewDataActivity : AppCompatActivity() {
         supportActionBar?.hide()
         binding = ActivityViewDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val imageViewBack: ImageView = findViewById(R.id.imageView18)
+
+        imageViewBack.setOnClickListener {
+            onBackPressed()
+        }
 
         auth = Firebase.auth
 
